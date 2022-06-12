@@ -1,14 +1,292 @@
 {
 	"info": {
-		"_postman_id": "494ecc90-d4b5-4c7f-836a-00b4415d29c5",
+		"_postman_id": "8f8f0a19-1073-4897-a8ad-362426ae8932",
 		"name": "CLASS LINE API Example",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "4728300"
+		"_exporter_id": "16611391"
 	},
 	"item": [
 		{
 			"name": "Messaging API",
 			"item": [
+				{
+					"name": "Channel access token",
+					"item": [
+						{
+							"name": "LINE LOGIN",
+							"item": [
+								{
+									"name": "Issue channel access token v2.1",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "grant_type",
+													"value": "client_credentials",
+													"type": "text"
+												},
+												{
+													"key": "client_assertion_type",
+													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+													"type": "text"
+												},
+												{
+													"key": "client_assertion",
+													"value": "{JWT}",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "https://api.line.me/oauth2/v2.1/token",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"oauth2",
+												"v2.1",
+												"token"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Verify the validity of the channel access token v2.1",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "access_token",
+													"value": "eyJhbGciOiJIUzI1NiJ9.UnQ_o-GP0VtnwDjbK0C8E_NvK...",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "https://api.line.me/oauth2/v2.1/verify?access_token={{access_token}}",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"oauth2",
+												"v2.1",
+												"verify"
+											],
+											"query": [
+												{
+													"key": "access_token",
+													"value": "{{access_token}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Revoke channel access token v2.1",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "client_id",
+													"value": "{{client_id}}",
+													"type": "text"
+												},
+												{
+													"key": "client_secret",
+													"value": "{{client_secret}}",
+													"type": "text"
+												},
+												{
+													"key": "access_token",
+													"value": "{{access_token}}",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "https://api.line.me/oauth2/v2.1/revoke",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"oauth2",
+												"v2.1",
+												"revoke"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Issue short-lived channel access token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"pm.globals.set(\"access_token\", jsonData.access_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{client_id}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{client_secret}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.line.me/v2/oauth/accessToken",
+									"protocol": "https",
+									"host": [
+										"api",
+										"line",
+										"me"
+									],
+									"path": [
+										"v2",
+										"oauth",
+										"accessToken"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify the validity of short-lived and long-lived channel access tokens",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "access_token",
+											"value": "{{access_token}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.line.me/v2/oauth/verify",
+									"protocol": "https",
+									"host": [
+										"api",
+										"line",
+										"me"
+									],
+									"path": [
+										"v2",
+										"oauth",
+										"verify"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Revoke short-lived or long-lived channel access token",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "access_token",
+											"value": "{{access_token}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://api.line.me/v2/oauth/revoke",
+									"protocol": "https",
+									"host": [
+										"api",
+										"line",
+										"me"
+									],
+									"path": [
+										"v2",
+										"oauth",
+										"revoke"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
 				{
 					"name": "Message",
 					"item": [
@@ -961,7 +1239,7 @@
 											{
 												"key": "Authorization",
 												"type": "text",
-												"value": "Bearer lyP0HesymyE563/LLKq+7CKmWww5c2V5QnUY84Aiu3S6dKQZ3RtX7i+p2DTFthw8D69eb0IoDuEhmUKTYDnUthv8iVRffs8FsCQs5lGFc6LTNplD6WABdjq9BMsZE6a1PxhhWTx0IJlYkiIFKAIUOY9PbdgDzCFqoOLOYbqAITQ="
+												"value": "Bearer {{access_token}}"
 											},
 											{
 												"key": "Content-Type",
@@ -1009,7 +1287,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"replyToken\":\"nHuyWiB7yP5Zw5xxxxxx\",\r\n    \"messages\":[\r\n        {\r\n            \"type\":\"text\",\r\n            \"text\":\"Hello, user\"\r\n        },\r\n        {\r\n            \"type\":\"text\",\r\n            \"text\":\"May I help you?\"\r\n        }\r\n    ]\r\n}"
+											"raw": "{\r\n    \"replyToken\":\"{{replyTokenId}}\",\r\n    \"messages\":[\r\n        {\r\n            \"type\":\"text\",\r\n            \"text\":\"Hello, user\"\r\n        },\r\n        {\r\n            \"type\":\"text\",\r\n            \"text\":\"May I help you?\"\r\n        }\r\n    ]\r\n}"
 										},
 										"url": {
 											"raw": "https://api.line.me/v2/bot/message/reply",
@@ -1523,7 +1801,7 @@
 									}
 								],
 								"url": {
-									"raw": "https://api.line.me/v2/bot/group/{groupId}/leave",
+									"raw": "https://api.line.me/v2/bot/group/{{groupId}}/leave",
 									"protocol": "https",
 									"host": [
 										"api",
@@ -1534,7 +1812,7 @@
 										"v2",
 										"bot",
 										"group",
-										"{groupId}",
+										"{{groupId}}",
 										"leave"
 									]
 								}
@@ -1625,7 +1903,7 @@
 									}
 								],
 								"url": {
-									"raw": "https://api.line.me/v2/bot/room/{roomId}/member/{{userid}}",
+									"raw": "https://api.line.me/v2/bot/room/{{roomId}}/member/{{userid}}",
 									"protocol": "https",
 									"host": [
 										"api",
@@ -1636,7 +1914,7 @@
 										"v2",
 										"bot",
 										"room",
-										"{roomId}",
+										"{{roomId}}",
 										"member",
 										"{{userid}}"
 									]
@@ -1656,7 +1934,7 @@
 									}
 								],
 								"url": {
-									"raw": "https://api.line.me/v2/bot/room/{roomId}/leave",
+									"raw": "https://api.line.me/v2/bot/room/{{roomId}}/leave",
 									"protocol": "https",
 									"host": [
 										"api",
@@ -1667,7 +1945,7 @@
 										"v2",
 										"bot",
 										"room",
-										"{roomId}",
+										"{{roomId}}",
 										"leave"
 									]
 								}
@@ -2115,1019 +2393,6 @@
 					]
 				},
 				{
-					"name": "Richmenu",
-					"item": [
-						{
-							"name": "Set Richmenu",
-							"item": [
-								{
-									"name": "Create a rich menu",
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Content-Type",
-												"name": "Content-Type",
-												"type": "text",
-												"value": "application/json"
-											},
-											{
-												"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
-												"key": "Authorization",
-												"value": "Bearer {{access_token}}",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"richmenu-b\",\r\n    \"chatBarText\": \"Menu\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 70,\r\n                \"y\": 268,\r\n                \"width\": 581,\r\n                \"height\": 125\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-a\",\r\n                \"data\": \"richmenu=a\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 954,\r\n                \"y\": 571,\r\n                \"width\": 1389,\r\n                \"height\": 254\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"EX10 CRM ช่วยคุณได้อย่างไร\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 960,\r\n                \"y\": 934,\r\n                \"width\": 1337,\r\n                \"height\": 222\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://ex10-crm-manual.web.app/?openExternalBrowser=1#0\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 955,\r\n                \"y\": 1286,\r\n                \"width\": 1370,\r\n                \"height\": 213\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"สอบถามค่าบริการ EX10 CRM\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1353,\r\n                \"y\": 44,\r\n                \"width\": 660,\r\n                \"height\": 137\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ติดต่อเจ้าหน้าที่\"\r\n            }\r\n        }\r\n    ]\r\n}"
-										},
-										"url": {
-											"raw": "https://api.line.me/v2/bot/richmenu",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"richmenu"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Validate rich menu object",
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Content-Type",
-												"value": "application/json"
-											},
-											{
-												"key": "Authorization",
-												"value": "Bearer {{access_token}}",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"size\": {\n      \"width\": 2500,\n      \"height\": 1686\n    },\n    \"selected\": false,\n    \"name\": \"Nice richmenu\",\n    \"chatBarText\": \"Tap here\",\n    \"areas\": [\n      {\n        \"bounds\": {\n          \"x\": 0,\n          \"y\": 0,\n          \"width\": 2500,\n          \"height\": 1686\n        },\n        \"action\": {\n          \"type\": \"postback\",\n          \"data\": \"action=buy&itemid=123\"\n        }\n      }\n   ]\n}"
-										},
-										"url": {
-											"raw": "https://api.line.me/v2/bot/richmenu/validate",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"richmenu",
-												"validate"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Upload the rich menu image",
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Authorization",
-												"value": "Bearer {{access_token}}",
-												"type": "text"
-											},
-											{
-												"key": "Content-Type",
-												"value": "image/jpeg",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "file",
-											"file": {
-												"src": "/Users/thepnatee/Desktop/richmenu_2.jpg"
-											}
-										},
-										"url": {
-											"raw": "https://api-data.line.me/v2/bot/richmenu/richmenu-3973ceb4e6d453f97f1e297b2dea770d/content",
-											"protocol": "https",
-											"host": [
-												"api-data",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"richmenu",
-												"richmenu-3973ceb4e6d453f97f1e297b2dea770d",
-												"content"
-											]
-										},
-										"description": "Image format: JPEG or PNG\r\nImage size (pixels): 2500x1686, 2500x843, 1200x810, 1200x405, 800x540, 800x270\r\nMaximum file size: 1 MB"
-									},
-									"response": []
-								},
-								{
-									"name": "Set the default rich menu",
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Authorization",
-												"type": "text",
-												"value": "Bearer {{access_token}}"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": ""
-										},
-										"url": {
-											"raw": "https://api.line.me/v2/bot/user/all/richmenu/richmenu-2b08655a33a62ef8175c4dd0a0b91fe7",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"user",
-												"all",
-												"richmenu",
-												"richmenu-2b08655a33a62ef8175c4dd0a0b91fe7"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Link a rich menu to an individual user",
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Authorization",
-												"value": "Bearer {{access_token}}",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": ""
-										},
-										"url": {
-											"raw": "https://api.line.me/v2/bot/user/{{userid}}/richmenu/richmenu-4f312639396d00c1f568f3e3612cc52e",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"user",
-												"{{userid}}",
-												"richmenu",
-												"richmenu-4f312639396d00c1f568f3e3612cc52e"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Link a rich menu to multiple users",
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Authorization",
-												"type": "text",
-												"value": "Bearer {{access_token}}"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"richMenuId\": \"richmenu-50563008a75c22bf54d7d3029a1caaae\",\r\n    \"userIds\": [\r\n        \"Ua9980474ba3035aace9b67fc001176ac\",\r\n        \"U8d4922ec49aad8fa19a6ebeff30dc41e\",\r\n        \"Ue858917ffd40b79694033344f04dcf5a\",\r\n        \"U49b18c760f3a022cff5ecef7c693648e\",\r\n        \"Ub3ecb6b608b8bcc41f40a03237347c53\",\r\n        \"U42bef9cdf599def8e8fb97a9cf3a7380\",\r\n        \"Ue0c4634717a0e011e4577cfbd21dea34\",\r\n        \"U8e8a957c9ca782d0b183c29e0cf1e1d9\",\r\n        \"Ud73bc4eb54356cf1807e30a041ace614\",\r\n        \"Ue16ebe663de49378194f106a684d08b1\",\r\n        \"U3ef3eb24acbc776018198bfaf9f5a78b\",\r\n        \"U255894952969e7b92fc06009797e6c5e\",\r\n        \"Ua0d3ad60a123a4bdd01f2dd4d27fb16a\",\r\n        \"Ue842ae1c3bcf288646f1bcbe42df9456\",\r\n        \"Ud06bff529511cfb66da44840b3454d8a\",\r\n        \"U0e8c0b83346e4a34916385864e9c12d3\"\r\n    ]\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://api.line.me/v2/bot/richmenu/bulk/link",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"richmenu",
-												"bulk",
-												"link"
-											]
-										}
-									},
-									"response": []
-								}
-							],
-							"description": "เริ่มต้นการใช้งาน Richmenu",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"type": "text/javascript",
-										"exec": [
-											""
-										]
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"type": "text/javascript",
-										"exec": [
-											""
-										]
-									}
-								}
-							]
-						},
-						{
-							"name": "Set Richmenu Switch Action",
-							"item": [
-								{
-									"name": "[1]Create a rich menu A",
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Authorization",
-												"type": "text",
-												"value": "Bearer {{access_token}}"
-											},
-											{
-												"key": "Content-Type",
-												"name": "Content-Type",
-												"type": "text",
-												"value": "application/json"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"richmenu-a\",\r\n    \"chatBarText\": \"Menu\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 70,\r\n                \"y\": 268,\r\n                \"width\": 581,\r\n                \"height\": 125\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-b\",\r\n                \"data\": \"richmenu=b\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 954,\r\n                \"y\": 571,\r\n                \"width\": 1389,\r\n                \"height\": 254\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"EX10 CRM ช่วยคุณได้อย่างไร\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 960,\r\n                \"y\": 934,\r\n                \"width\": 1337,\r\n                \"height\": 222\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://ex10-crm-manual.web.app/?openExternalBrowser=1#0\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 955,\r\n                \"y\": 1286,\r\n                \"width\": 1370,\r\n                \"height\": 213\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"สอบถามค่าบริการ EX10 CRM\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1353,\r\n                \"y\": 44,\r\n                \"width\": 660,\r\n                \"height\": 137\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ติดต่อเจ้าหน้าที่\"\r\n            }\r\n        }\r\n    ]\r\n}"
-										},
-										"url": {
-											"raw": "https://api.line.me/v2/bot/richmenu",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"richmenu"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "[2]Create a rich menu B",
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Authorization",
-												"type": "text",
-												"value": "Bearer {{access_token}}"
-											},
-											{
-												"key": "Content-Type",
-												"name": "Content-Type",
-												"type": "text",
-												"value": "application/json"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"richmenu-b\",\r\n    \"chatBarText\": \"Menu\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 70,\r\n                \"y\": 268,\r\n                \"width\": 581,\r\n                \"height\": 125\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-a\",\r\n                \"data\": \"richmenu=a\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 954,\r\n                \"y\": 571,\r\n                \"width\": 1389,\r\n                \"height\": 254\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"EX10 CRM ช่วยคุณได้อย่างไร\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 960,\r\n                \"y\": 934,\r\n                \"width\": 1337,\r\n                \"height\": 222\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://ex10-crm-manual.web.app/?openExternalBrowser=1#0\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 955,\r\n                \"y\": 1286,\r\n                \"width\": 1370,\r\n                \"height\": 213\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"สอบถามค่าบริการ EX10 CRM\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1353,\r\n                \"y\": 44,\r\n                \"width\": 660,\r\n                \"height\": 137\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ติดต่อเจ้าหน้าที่\"\r\n            }\r\n        }\r\n    ]\r\n}"
-										},
-										"url": {
-											"raw": "https://api.line.me/v2/bot/richmenu",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"richmenu"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "[3]Upload the rich menu image A",
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Authorization",
-												"value": "Bearer {{access_token}}",
-												"type": "text"
-											},
-											{
-												"key": "Content-Type",
-												"value": "image/jpeg",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "file",
-											"file": {
-												"src": "/Users/thepnatee/Desktop/richmenu_2.jpg"
-											}
-										},
-										"url": {
-											"raw": "https://api-data.line.me/v2/bot/richmenu/richmenu-06bded14c8ce1972de5194bf5274325d/content",
-											"protocol": "https",
-											"host": [
-												"api-data",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"richmenu",
-												"richmenu-06bded14c8ce1972de5194bf5274325d",
-												"content"
-											]
-										},
-										"description": "Image format: JPEG or PNG\r\nImage size (pixels): 2500x1686, 2500x843, 1200x810, 1200x405, 800x540, 800x270\r\nMaximum file size: 1 MB"
-									},
-									"response": []
-								},
-								{
-									"name": "[4]Upload the rich menu image B",
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Authorization",
-												"value": "Bearer {{access_token}}",
-												"type": "text"
-											},
-											{
-												"key": "Content-Type",
-												"value": "image/jpeg",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "file",
-											"file": {
-												"src": "/Users/thepnatee/Desktop/richmenu_2.jpg"
-											}
-										},
-										"url": {
-											"raw": "https://api-data.line.me/v2/bot/richmenu/richmenu-6d631ef4ef1537afc5369964563d15a6/content",
-											"protocol": "https",
-											"host": [
-												"api-data",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"richmenu",
-												"richmenu-6d631ef4ef1537afc5369964563d15a6",
-												"content"
-											]
-										},
-										"description": "Image format: JPEG or PNG\r\nImage size (pixels): 2500x1686, 2500x843, 1200x810, 1200x405, 800x540, 800x270\r\nMaximum file size: 1 MB"
-									},
-									"response": []
-								},
-								{
-									"name": "[5]Set the default rich menu A",
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Authorization",
-												"type": "text",
-												"value": "Bearer {{access_token}}"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": ""
-										},
-										"url": {
-											"raw": "https://api.line.me/v2/bot/user/all/richmenu/richmenu-06bded14c8ce1972de5194bf5274325d",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"user",
-												"all",
-												"richmenu",
-												"richmenu-06bded14c8ce1972de5194bf5274325d"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "[6]Create rich menu alias A",
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Authorization",
-												"type": "text",
-												"value": "Bearer {{access_token}}"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"richMenuAliasId\": \"richmenu-alias-a\",\r\n    \"richMenuId\": \"richmenu-06bded14c8ce1972de5194bf5274325d\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://api.line.me/v2/bot/richmenu/alias",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"richmenu",
-												"alias"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "[7]Create rich menu alias B",
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Authorization",
-												"type": "text",
-												"value": "Bearer {{access_token}}"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"richMenuAliasId\": \"richmenu-alias-b\",\r\n    \"richMenuId\": \"richmenu-6d631ef4ef1537afc5369964563d15a6\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://api.line.me/v2/bot/richmenu/alias",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"richmenu",
-												"alias"
-											]
-										}
-									},
-									"response": []
-								}
-							],
-							"description": "เริ่มต้นการใช้งาน Richmenu",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"type": "text/javascript",
-										"exec": [
-											""
-										]
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"type": "text/javascript",
-										"exec": [
-											""
-										]
-									}
-								}
-							]
-						},
-						{
-							"name": "GET",
-							"item": [
-								{
-									"name": "menu alias (Switch Action)",
-									"item": [
-										{
-											"name": "Get rich menu alias information",
-											"request": {
-												"method": "GET",
-												"header": [
-													{
-														"key": "Authorization",
-														"value": "Bearer {{access_token}}"
-													}
-												],
-												"url": {
-													"raw": "https://api.line.me/v2/bot/richmenu/alias/richmenu-alias-a",
-													"protocol": "https",
-													"host": [
-														"api",
-														"line",
-														"me"
-													],
-													"path": [
-														"v2",
-														"bot",
-														"richmenu",
-														"alias",
-														"richmenu-alias-a"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "Get list of rich menu alias",
-											"request": {
-												"method": "GET",
-												"header": [
-													{
-														"key": "Authorization",
-														"value": "Bearer {{access_token}}"
-													}
-												],
-												"url": {
-													"raw": "https://api.line.me/v2/bot/richmenu/alias/list",
-													"protocol": "https",
-													"host": [
-														"api",
-														"line",
-														"me"
-													],
-													"path": [
-														"v2",
-														"bot",
-														"richmenu",
-														"alias",
-														"list"
-													]
-												}
-											},
-											"response": []
-										}
-									]
-								},
-								{
-									"name": "Get a rich menu list",
-									"request": {
-										"method": "GET",
-										"header": [
-											{
-												"key": "Authorization",
-												"type": "text",
-												"value": "Bearer {{access_token}}"
-											},
-											{
-												"key": "Content-Type",
-												"name": "Content-Type",
-												"type": "text",
-												"value": "application/json"
-											}
-										],
-										"url": {
-											"raw": "https://api.line.me/v2/bot/richmenu/list",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"richmenu",
-												"list"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Get a rich menu",
-									"request": {
-										"method": "GET",
-										"header": [
-											{
-												"key": "Authorization",
-												"type": "text",
-												"value": "Bearer {{access_token}}"
-											},
-											{
-												"key": "Content-Type",
-												"name": "Content-Type",
-												"type": "text",
-												"value": "application/json"
-											}
-										],
-										"url": {
-											"raw": "https://api.line.me/v2/bot/richmenu/richmenu-6d631ef4ef1537afc5369964563d15a6",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"richmenu",
-												"richmenu-6d631ef4ef1537afc5369964563d15a6"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Get the default rich menu ID",
-									"request": {
-										"method": "GET",
-										"header": [
-											{
-												"key": "Authorization",
-												"type": "text",
-												"value": "Bearer {{access_token}}"
-											},
-											{
-												"key": "Content-Type",
-												"name": "Content-Type",
-												"type": "text",
-												"value": "application/json"
-											}
-										],
-										"url": {
-											"raw": "https://api.line.me/v2/bot/user/all/richmenu",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"user",
-												"all",
-												"richmenu"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Get the rich menu ID linked to a user",
-									"request": {
-										"method": "GET",
-										"header": [
-											{
-												"key": "Authorization",
-												"type": "text",
-												"value": "Bearer {{access_token}}"
-											},
-											{
-												"key": "Content-Type",
-												"name": "Content-Type",
-												"type": "text",
-												"value": "application/json"
-											}
-										],
-										"url": {
-											"raw": "https://api.line.me/v2/bot/user/{userId}/richmenu",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"user",
-												"{userId}",
-												"richmenu"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Download rich menu image",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"method": "GET",
-										"header": [
-											{
-												"key": "Authorization",
-												"type": "text",
-												"value": "Bearer {{access_token}}"
-											},
-											{
-												"key": "Content-Type",
-												"type": "text",
-												"value": "image/jpeg"
-											}
-										],
-										"body": {
-											"mode": "file",
-											"file": {
-												"src": ""
-											}
-										},
-										"url": {
-											"raw": "https://api-data.line.me/v2/bot/richmenu/{richMenuId}/content",
-											"protocol": "https",
-											"host": [
-												"api-data",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"richmenu",
-												"{richMenuId}",
-												"content"
-											]
-										}
-									},
-									"response": []
-								}
-							],
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"type": "text/javascript",
-										"exec": [
-											""
-										]
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"type": "text/javascript",
-										"exec": [
-											""
-										]
-									}
-								}
-							]
-						},
-						{
-							"name": "DELETE",
-							"item": [
-								{
-									"name": "menu alias (Switch Action)",
-									"item": [
-										{
-											"name": "Delete rich menu alias",
-											"request": {
-												"method": "DELETE",
-												"header": [
-													{
-														"key": "Authorization",
-														"value": "Bearer {{access_token}}"
-													}
-												],
-												"url": {
-													"raw": "https://api.line.me/v2/bot/richmenu/alias/richmenu-alias-a",
-													"protocol": "https",
-													"host": [
-														"api",
-														"line",
-														"me"
-													],
-													"path": [
-														"v2",
-														"bot",
-														"richmenu",
-														"alias",
-														"richmenu-alias-a"
-													]
-												}
-											},
-											"response": []
-										}
-									]
-								},
-								{
-									"name": "Delete a rich menu",
-									"request": {
-										"method": "DELETE",
-										"header": [
-											{
-												"key": "Authorization",
-												"type": "text",
-												"value": "Bearer {{access_token}}"
-											},
-											{
-												"key": "Content-Type",
-												"name": "Content-Type",
-												"type": "text",
-												"value": "application/json"
-											}
-										],
-										"url": {
-											"raw": "https://api.line.me/v2/bot/user/all/richmenu",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"user",
-												"all",
-												"richmenu"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Cancel the default rich menu",
-									"request": {
-										"method": "DELETE",
-										"header": [
-											{
-												"key": "Authorization",
-												"type": "text",
-												"value": "Bearer {{access_token}}"
-											},
-											{
-												"key": "Content-Type",
-												"name": "Content-Type",
-												"type": "text",
-												"value": "application/json"
-											}
-										],
-										"url": {
-											"raw": "https://api.line.me/v2/bot/user/all/richmenu",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"user",
-												"all",
-												"richmenu"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Unlink a rich menu from a user",
-									"request": {
-										"method": "DELETE",
-										"header": [
-											{
-												"key": "Authorization",
-												"type": "text",
-												"value": "Bearer {{access_token}}"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": ""
-										},
-										"url": {
-											"raw": "https://api.line.me/v2/bot/user/{{userid}}/richmenu",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"user",
-												"{{userid}}",
-												"richmenu"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Unlink rich menus from multiple users",
-									"request": {
-										"method": "DELETE",
-										"header": [
-											{
-												"key": "Authorization",
-												"type": "text",
-												"value": "Bearer {{access_token}}"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n  \"userIds\":[\"{{userid}}\"]\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://api.line.me/v2/bot/richmenu/bulk/unlink",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"richmenu",
-												"bulk",
-												"unlink"
-											]
-										}
-									},
-									"response": []
-								}
-							]
-						}
-					]
-				},
-				{
 					"name": "Webhook Setting",
 					"item": [
 						{
@@ -3549,43 +2814,47 @@
 					]
 				},
 				{
-					"name": "Channel access token",
+					"name": "Richmenu",
 					"item": [
 						{
-							"name": "LINE LOGIN",
+							"name": "Set Richmenu",
 							"item": [
 								{
-									"name": "Issue channel access token v2.1",
+									"name": "Create a rich menu",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json();",
+													"pm.globals.set(\"richMenuId\", jsonData.richMenuId);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
 									"request": {
 										"method": "POST",
 										"header": [
 											{
 												"key": "Content-Type",
-												"value": "application/x-www-form-urlencoded"
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
 											}
 										],
 										"body": {
-											"mode": "urlencoded",
-											"urlencoded": [
-												{
-													"key": "grant_type",
-													"value": "client_credentials",
-													"type": "text"
-												},
-												{
-													"key": "client_assertion_type",
-													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-													"type": "text"
-												},
-												{
-													"key": "client_assertion",
-													"value": "{JWT}",
-													"type": "text"
-												}
-											]
+											"mode": "raw",
+											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"richmenu-b\",\r\n    \"chatBarText\": \"Menu\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 70,\r\n                \"y\": 268,\r\n                \"width\": 581,\r\n                \"height\": 125\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-a\",\r\n                \"data\": \"richmenu=a\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 954,\r\n                \"y\": 571,\r\n                \"width\": 1389,\r\n                \"height\": 254\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"EX10 CRM ช่วยคุณได้อย่างไร\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 960,\r\n                \"y\": 934,\r\n                \"width\": 1337,\r\n                \"height\": 222\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://ex10-crm-manual.web.app/?openExternalBrowser=1#0\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 955,\r\n                \"y\": 1286,\r\n                \"width\": 1370,\r\n                \"height\": 213\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"สอบถามค่าบริการ EX10 CRM\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1353,\r\n                \"y\": 44,\r\n                \"width\": 660,\r\n                \"height\": 137\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ติดต่อเจ้าหน้าที่\"\r\n            }\r\n        }\r\n    ]\r\n}"
 										},
 										"url": {
-											"raw": "https://api.line.me/oauth2/v2.1/token",
+											"raw": "https://api.line.me/v2/bot/richmenu",
 											"protocol": "https",
 											"host": [
 												"api",
@@ -3593,16 +2862,756 @@
 												"me"
 											],
 											"path": [
-												"oauth2",
-												"v2.1",
-												"token"
+												"v2",
+												"bot",
+												"richmenu"
 											]
 										}
 									},
 									"response": []
 								},
 								{
-									"name": "Verify the validity of the channel access token v2.1",
+									"name": "Validate rich menu object",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"size\": {\n      \"width\": 2500,\n      \"height\": 1686\n    },\n    \"selected\": false,\n    \"name\": \"Nice richmenu\",\n    \"chatBarText\": \"Tap here\",\n    \"areas\": [\n      {\n        \"bounds\": {\n          \"x\": 0,\n          \"y\": 0,\n          \"width\": 2500,\n          \"height\": 1686\n        },\n        \"action\": {\n          \"type\": \"postback\",\n          \"data\": \"action=buy&itemid=123\"\n        }\n      }\n   ]\n}"
+										},
+										"url": {
+											"raw": "https://api.line.me/v2/bot/richmenu/validate",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"richmenu",
+												"validate"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Upload the rich menu image",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "image/jpeg",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "file",
+											"file": {
+												"src": "/Users/thepnatee/Desktop/richmenu_2.jpg"
+											}
+										},
+										"url": {
+											"raw": "https://api-data.line.me/v2/bot/richmenu/{{richMenuId}}/content",
+											"protocol": "https",
+											"host": [
+												"api-data",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"richmenu",
+												"{{richMenuId}}",
+												"content"
+											]
+										},
+										"description": "Image format: JPEG or PNG\r\nImage size (pixels): 2500x1686, 2500x843, 1200x810, 1200x405, 800x540, 800x270\r\nMaximum file size: 1 MB"
+									},
+									"response": []
+								},
+								{
+									"name": "Set the default rich menu",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://api.line.me/v2/bot/user/all/richmenu/{{richMenuId}}",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"user",
+												"all",
+												"richmenu",
+												"{{richMenuId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Link a rich menu to an individual user",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://api.line.me/v2/bot/user/{{userid}}/richmenu/{{richMenuId}}",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"user",
+												"{{userid}}",
+												"richmenu",
+												"{{richMenuId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Link a rich menu to multiple users",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"richMenuId\": \"{{richMenuId}}\",\r\n    \"userIds\": [\r\n        \"Ua9980474ba3035aace9b67fc001176ac\",\r\n        \"U8d4922ec49aad8fa19a6ebeff30dc41e\",\r\n        \"Ue858917ffd40b79694033344f04dcf5a\",\r\n        \"U49b18c760f3a022cff5ecef7c693648e\",\r\n        \"Ub3ecb6b608b8bcc41f40a03237347c53\",\r\n        \"U42bef9cdf599def8e8fb97a9cf3a7380\",\r\n        \"Ue0c4634717a0e011e4577cfbd21dea34\",\r\n        \"U8e8a957c9ca782d0b183c29e0cf1e1d9\",\r\n        \"Ud73bc4eb54356cf1807e30a041ace614\",\r\n        \"Ue16ebe663de49378194f106a684d08b1\",\r\n        \"U3ef3eb24acbc776018198bfaf9f5a78b\",\r\n        \"U255894952969e7b92fc06009797e6c5e\",\r\n        \"Ua0d3ad60a123a4bdd01f2dd4d27fb16a\",\r\n        \"Ue842ae1c3bcf288646f1bcbe42df9456\",\r\n        \"Ud06bff529511cfb66da44840b3454d8a\",\r\n        \"U0e8c0b83346e4a34916385864e9c12d3\"\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://api.line.me/v2/bot/richmenu/bulk/link",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"richmenu",
+												"bulk",
+												"link"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"description": "เริ่มต้นการใช้งาน Richmenu",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							]
+						},
+						{
+							"name": "Set Richmenu Switch Action",
+							"item": [
+								{
+									"name": "[1]Create a rich menu A",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json();",
+													"pm.globals.set(\"richMenuId_A\", jsonData.richMenuId);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"richmenu-a\",\r\n    \"chatBarText\": \"Menu\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 70,\r\n                \"y\": 268,\r\n                \"width\": 581,\r\n                \"height\": 125\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-b\",\r\n                \"data\": \"richmenu=b\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 954,\r\n                \"y\": 571,\r\n                \"width\": 1389,\r\n                \"height\": 254\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"EX10 CRM ช่วยคุณได้อย่างไร\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 960,\r\n                \"y\": 934,\r\n                \"width\": 1337,\r\n                \"height\": 222\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://ex10-crm-manual.web.app/?openExternalBrowser=1#0\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 955,\r\n                \"y\": 1286,\r\n                \"width\": 1370,\r\n                \"height\": 213\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"สอบถามค่าบริการ EX10 CRM\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1353,\r\n                \"y\": 44,\r\n                \"width\": 660,\r\n                \"height\": 137\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ติดต่อเจ้าหน้าที่\"\r\n            }\r\n        }\r\n    ]\r\n}"
+										},
+										"url": {
+											"raw": "https://api.line.me/v2/bot/richmenu",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"richmenu"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[2]Create a rich menu B",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json();",
+													"pm.globals.set(\"richMenuId_B\", jsonData.richMenuId);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"richmenu-b\",\r\n    \"chatBarText\": \"Menu\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 70,\r\n                \"y\": 268,\r\n                \"width\": 581,\r\n                \"height\": 125\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-a\",\r\n                \"data\": \"richmenu=a\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 954,\r\n                \"y\": 571,\r\n                \"width\": 1389,\r\n                \"height\": 254\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"EX10 CRM ช่วยคุณได้อย่างไร\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 960,\r\n                \"y\": 934,\r\n                \"width\": 1337,\r\n                \"height\": 222\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://ex10-crm-manual.web.app/?openExternalBrowser=1#0\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 955,\r\n                \"y\": 1286,\r\n                \"width\": 1370,\r\n                \"height\": 213\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"สอบถามค่าบริการ EX10 CRM\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1353,\r\n                \"y\": 44,\r\n                \"width\": 660,\r\n                \"height\": 137\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ติดต่อเจ้าหน้าที่\"\r\n            }\r\n        }\r\n    ]\r\n}"
+										},
+										"url": {
+											"raw": "https://api.line.me/v2/bot/richmenu",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"richmenu"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[3]Upload the rich menu image A",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "image/jpeg",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "file",
+											"file": {
+												"src": "/Users/thepnatee/Desktop/richmenu_2.jpg"
+											}
+										},
+										"url": {
+											"raw": "https://api-data.line.me/v2/bot/richmenu/{{richMenuId_A}}/content",
+											"protocol": "https",
+											"host": [
+												"api-data",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"richmenu",
+												"{{richMenuId_A}}",
+												"content"
+											]
+										},
+										"description": "Image format: JPEG or PNG\r\nImage size (pixels): 2500x1686, 2500x843, 1200x810, 1200x405, 800x540, 800x270\r\nMaximum file size: 1 MB"
+									},
+									"response": []
+								},
+								{
+									"name": "[4]Upload the rich menu image B",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "image/jpeg",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "file",
+											"file": {
+												"src": "/Users/thepnatee/Desktop/richmenu_2.jpg"
+											}
+										},
+										"url": {
+											"raw": "https://api-data.line.me/v2/bot/richmenu/{{richMenuId_B}}/content",
+											"protocol": "https",
+											"host": [
+												"api-data",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"richmenu",
+												"{{richMenuId_B}}",
+												"content"
+											]
+										},
+										"description": "Image format: JPEG or PNG\r\nImage size (pixels): 2500x1686, 2500x843, 1200x810, 1200x405, 800x540, 800x270\r\nMaximum file size: 1 MB"
+									},
+									"response": []
+								},
+								{
+									"name": "[5]Set the default rich menu A",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://api.line.me/v2/bot/user/all/richmenu/{{richMenuId_A}}",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"user",
+												"all",
+												"richmenu",
+												"{{richMenuId_A}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[6]Create rich menu alias A",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"richMenuAliasId\": \"richmenu-alias-a\",\r\n    \"richMenuId\": \"{{richMenuId_A}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://api.line.me/v2/bot/richmenu/alias",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"richmenu",
+												"alias"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[7]Create rich menu alias B",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"richMenuAliasId\": \"richmenu-alias-b\",\r\n    \"richMenuId\": \"{{richMenuId_B}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://api.line.me/v2/bot/richmenu/alias",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"richmenu",
+												"alias"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"description": "เริ่มต้นการใช้งาน Richmenu",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							]
+						},
+						{
+							"name": "GET",
+							"item": [
+								{
+									"name": "menu alias (Switch Action)",
+									"item": [
+										{
+											"name": "Get rich menu alias information",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer {{access_token}}"
+													}
+												],
+												"url": {
+													"raw": "https://api.line.me/v2/bot/richmenu/alias/richmenu-alias-a",
+													"protocol": "https",
+													"host": [
+														"api",
+														"line",
+														"me"
+													],
+													"path": [
+														"v2",
+														"bot",
+														"richmenu",
+														"alias",
+														"richmenu-alias-a"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Get list of rich menu alias",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer {{access_token}}"
+													}
+												],
+												"url": {
+													"raw": "https://api.line.me/v2/bot/richmenu/alias/list",
+													"protocol": "https",
+													"host": [
+														"api",
+														"line",
+														"me"
+													],
+													"path": [
+														"v2",
+														"bot",
+														"richmenu",
+														"alias",
+														"list"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Get a rich menu list",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "https://api.line.me/v2/bot/richmenu/list",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"richmenu",
+												"list"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get a rich menu",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "https://api.line.me/v2/bot/richmenu/{{richMenuId}}",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"richmenu",
+												"{{richMenuId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get the default rich menu ID",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "https://api.line.me/v2/bot/user/all/richmenu",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"user",
+												"all",
+												"richmenu"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get the rich menu ID linked to a user",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "https://api.line.me/v2/bot/user/{{userId}}/richmenu",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"user",
+												"{{userId}}",
+												"richmenu"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Download rich menu image",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -3610,22 +3619,119 @@
 										"method": "GET",
 										"header": [
 											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											},
+											{
 												"key": "Content-Type",
-												"value": "application/x-www-form-urlencoded"
+												"type": "text",
+												"value": "image/jpeg"
 											}
 										],
 										"body": {
-											"mode": "urlencoded",
-											"urlencoded": [
-												{
-													"key": "access_token",
-													"value": "eyJhbGciOiJIUzI1NiJ9.UnQ_o-GP0VtnwDjbK0C8E_NvK...",
-													"type": "text"
-												}
-											]
+											"mode": "file",
+											"file": {
+												"src": ""
+											}
 										},
 										"url": {
-											"raw": "https://api.line.me/oauth2/v2.1/verify?access_token=eyJhbGciOiJIUzI1NiJ9.UnQ_o-GP0VtnwDjbK0C8E_NvK...",
+											"raw": "https://api-data.line.me/v2/bot/richmenu/{{richMenuId}}/content",
+											"protocol": "https",
+											"host": [
+												"api-data",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"richmenu",
+												"{{richMenuId}}",
+												"content"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							]
+						},
+						{
+							"name": "DELETE",
+							"item": [
+								{
+									"name": "menu alias (Switch Action)",
+									"item": [
+										{
+											"name": "Delete rich menu alias",
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer {{access_token}}"
+													}
+												],
+												"url": {
+													"raw": "https://api.line.me/v2/bot/richmenu/alias/richmenu-alias-a",
+													"protocol": "https",
+													"host": [
+														"api",
+														"line",
+														"me"
+													],
+													"path": [
+														"v2",
+														"bot",
+														"richmenu",
+														"alias",
+														"richmenu-alias-a"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Delete a rich menu",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "https://api.line.me/v2/bot/user/all/richmenu",
 											"protocol": "https",
 											"host": [
 												"api",
@@ -3633,47 +3739,35 @@
 												"me"
 											],
 											"path": [
-												"oauth2",
-												"v2.1",
-												"verify"
-											],
-											"query": [
-												{
-													"key": "access_token",
-													"value": "eyJhbGciOiJIUzI1NiJ9.UnQ_o-GP0VtnwDjbK0C8E_NvK..."
-												}
+												"v2",
+												"bot",
+												"user",
+												"all",
+												"richmenu"
 											]
 										}
 									},
 									"response": []
 								},
 								{
-									"name": "Revoke channel access token v2.1",
+									"name": "Cancel the default rich menu",
 									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "urlencoded",
-											"urlencoded": [
-												{
-													"key": "client_id",
-													"value": "{channel ID}",
-													"type": "text"
-												},
-												{
-													"key": "client_secret",
-													"value": "{channel secret}",
-													"type": "text"
-												},
-												{
-													"key": "access_token",
-													"value": "{access token}",
-													"type": "text"
-												}
-											]
-										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
 										"url": {
-											"raw": "https://api.line.me/oauth2/v2.1/revoke",
+											"raw": "https://api.line.me/v2/bot/user/all/richmenu",
 											"protocol": "https",
 											"host": [
 												"api",
@@ -3681,136 +3775,90 @@
 												"me"
 											],
 											"path": [
-												"oauth2",
-												"v2.1",
-												"revoke"
+												"v2",
+												"bot",
+												"user",
+												"all",
+												"richmenu"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Unlink a rich menu from a user",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://api.line.me/v2/bot/user/{{userid}}/richmenu",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"user",
+												"{{userid}}",
+												"richmenu"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Unlink rich menus from multiple users",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"userIds\":[\"{{userid}}\"]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://api.line.me/v2/bot/richmenu/bulk/unlink",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"richmenu",
+												"bulk",
+												"unlink"
 											]
 										}
 									},
 									"response": []
 								}
 							]
-						},
-						{
-							"name": "Issue short-lived channel access token",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "grant_type",
-											"value": "client_credentials",
-											"type": "text"
-										},
-										{
-											"key": "client_id",
-											"value": "{channel ID}",
-											"type": "text"
-										},
-										{
-											"key": "client_secret",
-											"value": "{channel secret}",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "https://api.line.me/v2/oauth/accessToken",
-									"protocol": "https",
-									"host": [
-										"api",
-										"line",
-										"me"
-									],
-									"path": [
-										"v2",
-										"oauth",
-										"accessToken"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Verify the validity of short-lived and long-lived channel access tokens",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "access_token",
-											"value": "bNl4YEFPI/hjFWhTqexp4MuEw5YPs7qhr6dJDXKwNPuLka...",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "https://api.line.me/v2/oauth/verify",
-									"protocol": "https",
-									"host": [
-										"api",
-										"line",
-										"me"
-									],
-									"path": [
-										"v2",
-										"oauth",
-										"verify"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Revoke short-lived or long-lived channel access token",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "access_token",
-											"value": "{channel access token}",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "https://api.line.me/v2/oauth/revoke",
-									"protocol": "https",
-									"host": [
-										"api",
-										"line",
-										"me"
-									],
-									"path": [
-										"v2",
-										"oauth",
-										"revoke"
-									]
-								}
-							},
-							"response": []
 						}
 					]
 				},
@@ -5136,7 +5184,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer {access token}"
+										"value": "Bearer {{access_token}}"
 									}
 								],
 								"url": {
@@ -5168,7 +5216,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer {access token}"
+										"value": "Bearer {{access_token}}"
 									}
 								],
 								"url": {
