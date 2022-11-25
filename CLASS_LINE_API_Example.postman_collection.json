@@ -1595,7 +1595,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"to\": \"{{userid}}\",\r\n    \"messages\": [\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"Hello, world1\",\r\n            \"sender\": {\r\n                \"name\": \"Bot\",\r\n                \"iconUrl\": \"https://stickershop.line-scdn.net/stickershop/v1/sticker/51626526/ANDROID/sticker.png\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"Hello, world2\"\r\n        },\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"$ LINE emoji $\",\r\n            \"emojis\": [\r\n                {\r\n                    \"index\": 0,\r\n                    \"productId\": \"5ac1bfd5040ab15980c9b435\",\r\n                    \"emojiId\": \"001\"\r\n                },\r\n                {\r\n                    \"index\": 13,\r\n                    \"productId\": \"5ac1bfd5040ab15980c9b435\",\r\n                    \"emojiId\": \"002\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"\\uDBC0\\uDC84 LINE original emoji\"\r\n        },\r\n        {\r\n            \"type\": \"location\",\r\n            \"title\": \"my location\",\r\n            \"address\": \"1-6-1 Yotsuya, Shinjuku-ku, Tokyo, 160-0004, Japan\",\r\n            \"latitude\": 35.687574,\r\n            \"longitude\": 139.72922\r\n        }\r\n    ]\r\n}"
+											"raw": "{\r\n    \"to\": \"{{userid}}\",\r\n    \"messages\": [\r\n        {\r\n            \"text\": \"Hello, world1\",\r\n            \"sender\": {\r\n                \"name\": \"Bot\",\r\n                \"iconUrl\": \"https://stickershop.line-scdn.net/stickershop/v1/sticker/51626526/ANDROID/sticker.png\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"Hello, world2\"\r\n        },\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"$ LINE emoji $\",\r\n            \"emojis\": [\r\n                {\r\n                    \"index\": 0,\r\n                    \"productId\": \"5ac1bfd5040ab15980c9b435\",\r\n                    \"emojiId\": \"001\"\r\n                },\r\n                {\r\n                    \"index\": 13,\r\n                    \"productId\": \"5ac1bfd5040ab15980c9b435\",\r\n                    \"emojiId\": \"002\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"\\uDBC0\\uDC84 LINE original emoji\"\r\n        },\r\n        {\r\n            \"type\": \"location\",\r\n            \"title\": \"my location\",\r\n            \"address\": \"1-6-1 Yotsuya, Shinjuku-ku, Tokyo, 160-0004, Japan\",\r\n            \"latitude\": 35.687574,\r\n            \"longitude\": 139.72922\r\n        }\r\n    ]\r\n}"
 										},
 										"url": {
 											"raw": "https://api.line.me/v2/bot/message/push",
@@ -3853,6 +3853,22 @@
 								},
 								{
 									"name": "Get a rich menu list",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json();",
+													"pm.globals.set(\"richMenuId\", jsonData.richmenus[0].richMenuId);",
+													"",
+													"pm.test(\"Status code is 200\", function () {",
+													"   pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
 									"request": {
 										"method": "GET",
 										"header": [
@@ -4114,7 +4130,7 @@
 											}
 										],
 										"url": {
-											"raw": "https://api.line.me/v2/bot/user/all/richmenu",
+											"raw": "https://api.line.me/v2/bot/richmenu/{{richMenuId}}",
 											"protocol": "https",
 											"host": [
 												"api",
@@ -4124,9 +4140,8 @@
 											"path": [
 												"v2",
 												"bot",
-												"user",
-												"all",
-												"richmenu"
+												"richmenu",
+												"{{richMenuId}}"
 											]
 										}
 									},
@@ -5837,6 +5852,121 @@
 							"response": []
 						}
 					]
+				}
+			]
+		},
+		{
+			"name": "LINE Notify",
+			"item": [
+				{
+					"name": "Notification",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Context-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{notify_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "message",
+									"value": "Hello EX10, https://ex10.tech/v2/",
+									"type": "text"
+								},
+								{
+									"key": "imageThumbnail",
+									"value": "https://cloud.ex10.tech/public/filestore/S__10281123-12bb7acb-6c72-11ed-8169-de795a77894f.jpg",
+									"type": "text"
+								},
+								{
+									"key": "imageFullsize",
+									"value": "https://cloud.ex10.tech/public/filestore/S__10281123-12bb7acb-6c72-11ed-8169-de795a77894f.jpg",
+									"type": "text"
+								},
+								{
+									"key": "imageFile",
+									"value": "https://cloud.ex10.tech/public/filestore/S__10281123-12bb7acb-6c72-11ed-8169-de795a77894f.jpg",
+									"type": "text"
+								},
+								{
+									"key": "stickerPackageId",
+									"value": "446",
+									"type": "text"
+								},
+								{
+									"key": "stickerId",
+									"value": "1989",
+									"type": "text"
+								},
+								{
+									"key": "notificationDisabled",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://notify-api.line.me/api/notify",
+							"protocol": "https",
+							"host": [
+								"notify-api",
+								"line",
+								"me"
+							],
+							"path": [
+								"api",
+								"notify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Revoke Token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Context-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{notify_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://notify-api.line.me/api/revoke",
+							"protocol": "https",
+							"host": [
+								"notify-api",
+								"line",
+								"me"
+							],
+							"path": [
+								"api",
+								"revoke"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
