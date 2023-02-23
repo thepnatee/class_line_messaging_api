@@ -445,6 +445,101 @@
 									]
 								},
 								{
+									"name": "Getting content",
+									"item": [
+										{
+											"name": "Get content",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer {{access_token}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "https://api-data.line.me/v2/bot/message/{messageId}/content",
+													"protocol": "https",
+													"host": [
+														"api-data",
+														"line",
+														"me"
+													],
+													"path": [
+														"v2",
+														"bot",
+														"message",
+														"{messageId}",
+														"content"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Verify the preparation status of a video or audio for getting",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer {{access_token}}"
+													}
+												],
+												"url": {
+													"raw": "https://api-data.line.me/v2/bot/message/{messageId}/content/transcoding",
+													"protocol": "https",
+													"host": [
+														"api-data",
+														"line",
+														"me"
+													],
+													"path": [
+														"v2",
+														"bot",
+														"message",
+														"{messageId}",
+														"content",
+														"transcoding"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Get a preview image of the image or video",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer {{access_token}}"
+													}
+												],
+												"url": {
+													"raw": "https://api-data.line.me/v2/bot/message/{messageId}/content/preview",
+													"protocol": "https",
+													"host": [
+														"api-data",
+														"line",
+														"me"
+													],
+													"path": [
+														"v2",
+														"bot",
+														"message",
+														"{messageId}",
+														"content",
+														"preview"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
 									"name": "Get narrowcast message status",
 									"request": {
 										"method": "GET",
@@ -475,36 +570,6 @@
 													"key": "requestId",
 													"value": "{request_id}"
 												}
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "Get content",
-									"request": {
-										"method": "GET",
-										"header": [
-											{
-												"key": "Authorization",
-												"value": "Bearer {{access_token}}",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "https://api-data.line.me/v2/bot/message/{messageId}/content",
-											"protocol": "https",
-											"host": [
-												"api-data",
-												"line",
-												"me"
-											],
-											"path": [
-												"v2",
-												"bot",
-												"message",
-												"{messageId}",
-												"content"
 											]
 										}
 									},
@@ -1556,7 +1621,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"messages\":[\r\n        {\r\n            \"type\":\"text\",\r\n            \"text\":\"Hello, world1\"\r\n        },\r\n        {\r\n            \"type\":\"text\",\r\n            \"text\":\"Hello, world2\"\r\n        }\r\n    ]\r\n}"
+											"raw": "{\r\n    \"messages\": [\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"Hello, world1\"\r\n        },\r\n        {\r\n            \"type\": \"image\",\r\n            \"originalContentUrl\": \"https://example.com/original.jpg\",\r\n            \"previewImageUrl\": \"https://example.com/preview.jpg\"\r\n        }\r\n    ]\r\n}"
 										},
 										"url": {
 											"raw": "https://api.line.me/v2/bot/message/broadcast",
@@ -1595,7 +1660,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"to\": \"{{userid}}\",\r\n    \"messages\": [\r\n        {\r\n            \"text\": \"Hello, world1\",\r\n            \"sender\": {\r\n                \"name\": \"Bot\",\r\n                \"iconUrl\": \"https://stickershop.line-scdn.net/stickershop/v1/sticker/51626526/ANDROID/sticker.png\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"Hello, world2\"\r\n        },\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"$ LINE emoji $\",\r\n            \"emojis\": [\r\n                {\r\n                    \"index\": 0,\r\n                    \"productId\": \"5ac1bfd5040ab15980c9b435\",\r\n                    \"emojiId\": \"001\"\r\n                },\r\n                {\r\n                    \"index\": 13,\r\n                    \"productId\": \"5ac1bfd5040ab15980c9b435\",\r\n                    \"emojiId\": \"002\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"\\uDBC0\\uDC84 LINE original emoji\"\r\n        },\r\n        {\r\n            \"type\": \"location\",\r\n            \"title\": \"my location\",\r\n            \"address\": \"1-6-1 Yotsuya, Shinjuku-ku, Tokyo, 160-0004, Japan\",\r\n            \"latitude\": 35.687574,\r\n            \"longitude\": 139.72922\r\n        }\r\n    ]\r\n}"
+											"raw": "{\r\n    \"to\": \"{{userid}}\",\r\n    \"messages\": [\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"Hello, world1\",\r\n            \"sender\": {\r\n                \"name\": \"Bot\",\r\n                \"iconUrl\": \"https://stickershop.line-scdn.net/stickershop/v1/sticker/51626526/ANDROID/sticker.png\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"Hello, world2\"\r\n        },\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"$ LINE emoji $\",\r\n            \"emojis\": [\r\n                {\r\n                    \"index\": 0,\r\n                    \"productId\": \"5ac1bfd5040ab15980c9b435\",\r\n                    \"emojiId\": \"001\"\r\n                },\r\n                {\r\n                    \"index\": 13,\r\n                    \"productId\": \"5ac1bfd5040ab15980c9b435\",\r\n                    \"emojiId\": \"002\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"\\uDBC0\\uDC84 LINE original emoji\"\r\n        },\r\n        {\r\n            \"type\": \"location\",\r\n            \"title\": \"my location\",\r\n            \"address\": \"1-6-1 Yotsuya, Shinjuku-ku, Tokyo, 160-0004, Japan\",\r\n            \"latitude\": 35.687574,\r\n            \"longitude\": 139.72922\r\n        }\r\n    ]\r\n}"
 										},
 										"url": {
 											"raw": "https://api.line.me/v2/bot/message/push",
@@ -5999,16 +6064,6 @@
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "client_id",
-			"value": "1657447436"
-		},
-		{
-			"key": "client_secret",
-			"value": "8259b3cc0ead51426bf41825245f4ecc"
 		}
 	]
 }
