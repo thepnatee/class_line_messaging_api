@@ -1660,7 +1660,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"to\": \"{{userid}}\",\r\n    \"messages\": [\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"Hello, world1\",\r\n            \"sender\": {\r\n                \"name\": \"Bot\",\r\n                \"iconUrl\": \"https://stickershop.line-scdn.net/stickershop/v1/sticker/51626526/ANDROID/sticker.png\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"Hello, world2\"\r\n        },\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"$ LINE emoji $\",\r\n            \"emojis\": [\r\n                {\r\n                    \"index\": 0,\r\n                    \"productId\": \"5ac1bfd5040ab15980c9b435\",\r\n                    \"emojiId\": \"001\"\r\n                },\r\n                {\r\n                    \"index\": 13,\r\n                    \"productId\": \"5ac1bfd5040ab15980c9b435\",\r\n                    \"emojiId\": \"002\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"\\uDBC0\\uDC84 LINE original emoji\"\r\n        },\r\n        {\r\n            \"type\": \"location\",\r\n            \"title\": \"my location\",\r\n            \"address\": \"1-6-1 Yotsuya, Shinjuku-ku, Tokyo, 160-0004, Japan\",\r\n            \"latitude\": 35.687574,\r\n            \"longitude\": 139.72922\r\n        }\r\n    ]\r\n}"
+											"raw": "{\r\n    \"to\": \"{{userid}}\",\r\n    \"messages\": [\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"Hello, world2\"\r\n        }\r\n    ]\r\n}"
 										},
 										"url": {
 											"raw": "https://api.line.me/v2/bot/message/push",
@@ -3299,7 +3299,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"richmenu-b\",\r\n    \"chatBarText\": \"Menu\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 70,\r\n                \"y\": 268,\r\n                \"width\": 581,\r\n                \"height\": 125\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-a\",\r\n                \"data\": \"richmenu=a\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 954,\r\n                \"y\": 571,\r\n                \"width\": 1389,\r\n                \"height\": 254\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"EX10 CRM ช่วยคุณได้อย่างไร\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 960,\r\n                \"y\": 934,\r\n                \"width\": 1337,\r\n                \"height\": 222\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://ex10-crm-manual.web.app/?openExternalBrowser=1#0\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 955,\r\n                \"y\": 1286,\r\n                \"width\": 1370,\r\n                \"height\": 213\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"สอบถามค่าบริการ EX10 CRM\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1353,\r\n                \"y\": 44,\r\n                \"width\": 660,\r\n                \"height\": 137\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ติดต่อเจ้าหน้าที่\"\r\n            }\r\n        }\r\n    ]\r\n}"
+											"raw": "{\r\n  \"size\": {\r\n    \"width\": 2500,\r\n    \"height\": 1686\r\n  },\r\n  \"selected\": true,\r\n  \"name\": \"Richmenu Demo\",\r\n  \"chatBarText\": \"Click\",\r\n  \"areas\": [\r\n    {\r\n      \"bounds\": {\r\n        \"x\": 108,\r\n        \"y\": 79,\r\n        \"width\": 636,\r\n        \"height\": 729\r\n      },\r\n      \"action\": {\r\n        \"type\": \"message\",\r\n        \"text\": \"Area 1\"\r\n      }\r\n    },\r\n    {\r\n      \"bounds\": {\r\n        \"x\": 862,\r\n        \"y\": 75,\r\n        \"width\": 758,\r\n        \"height\": 791\r\n      },\r\n      \"action\": {\r\n        \"type\": \"message\",\r\n        \"text\": \"Area 2\"\r\n      }\r\n    },\r\n    {\r\n      \"bounds\": {\r\n        \"x\": 1731,\r\n        \"y\": 101,\r\n        \"width\": 751,\r\n        \"height\": 693\r\n      },\r\n      \"action\": {\r\n        \"type\": \"uri\",\r\n        \"uri\": \"https://www.ex10.tech/\"\r\n      }\r\n    }\r\n  ]\r\n}"
 										},
 										"url": {
 											"raw": "https://api.line.me/v2/bot/richmenu",
@@ -3374,7 +3374,7 @@
 										"body": {
 											"mode": "file",
 											"file": {
-												"src": "/Users/thepnatee/Desktop/richmenu_2.jpg"
+												"src": "/Users/thepnatee/Desktop/works/asset-wise/document/richmenu/richmenu_1686217988791.jpg"
 											}
 										},
 										"url": {
@@ -6032,6 +6032,900 @@
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "LINE Shoping API",
+			"item": [
+				{
+					"name": "Product API",
+					"item": [
+						{
+							"name": "[POST] Create & Update & Delete",
+							"item": [
+								{
+									"name": "Create product",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json();",
+													"pm.globals.set(\"product_id\", jsonData.id);",
+													"pm.globals.set(\"variants_id\", jsonData.variants[0].id);",
+													"pm.globals.set(\"inventory_id\", jsonData.variants[0].inventoryId);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "User-Agent",
+												"value": "{{company_name}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"brand\": \"ex10\",\n  \"categoryId\": 17,\n  \"code\": \"EX1001\",\n  \"description\": \"ex10 product demo\",\n  \"imageUrls\": [\n    \"https://cloud.ex10.tech/public/filestore/Screenshot2566-06-24at11-b1d5107d-1249-11ee-be63-2ec4184fafd2.png\"\n  ],\n  \"instantDiscount\": 0,\n  \"name\": \"ex10-demo\",\n  \"variantOptions\": {\n    \"option1\": {\n      \"data\": [\n        {\n          \"imageUrl\": \"https://cloud.ex10.tech/public/filestore/Screenshot2566-06-24at11-b1d5107d-1249-11ee-be63-2ec4184fafd2.png\",\n          \"value\": \"100\"\n        }\n      ],\n      \"name\": \"RED\"\n    }\n  },\n  \"variants\": [\n    {\n      \"barcode\": \"EX10DEMO\",\n      \"onHandNumber\": 100,\n      \"options\": [\n        0\n      ],\n      \"price\": 10,\n      \"sku\": \"each\",\n      \"weight\": 10\n    }\n  ]\n}"
+										},
+										"url": {
+											"raw": "https://developers-oaplus.line.biz/myshop/v1/products",
+											"protocol": "https",
+											"host": [
+												"developers-oaplus",
+												"line",
+												"biz"
+											],
+											"path": [
+												"myshop",
+												"v1",
+												"products"
+											]
+										},
+										"description": "## Create product\n\nAn API for product creation. For product Categories ID variable please find more information on [Development guideline](https://www.line-website.com/oaplus-public-api-doc-client/#tag/MyShopDevelopmentGuide)\n\n##### AUTHORIZATIONS:\n\n[X-API-KEY](https://www.line-website.com/oaplus-public-api-doc-client/#section/Authentication/X-API-KEY)\n\n##### REQUEST BODY SCHEMA: application/json\n\ncreate product request\n\n| brand | <br><br>string<br><br>Product brand<br><br> |\n| categoryIdrequired | <br><br>integer<br><br>Product category id<br><br> |\n| coderequired | <br><br>string<br><br>Product code<br><br> |\n| description | <br><br>string<br><br>Product description with HTML formatting support<br><br> |\n| imageUrlsrequired | <br><br>Array of strings non-empty<br><br>Product image urls<br><br> |\n| instantDiscount | <br><br>number<br><br>Product instant discount must be greater than 0. If instant discount amount is 0, the instant discount will be disabled.<br><br> |\n| namerequired | <br><br>string<br><br>Product name<br><br> |\n| variantOptions | object (product.ProductVariantOptions) |\n| variantsrequired | <br><br>Array of objects (product.ProductVariant) non-empty<br><br>Product variants<br><br> |\n\n### Responses\n\n**201** \n\nSuccess\n\n##### RESPONSE SCHEMA: application/json\n\n| brand | <br><br>string<br><br>Product brand name<br><br> |\n| category | object (product.Category) |\n| code | <br><br>string<br><br>Product code<br><br> |\n| description | <br><br>string<br><br>Product description with HTML formatting support<br><br> |\n| giftGroups | <br><br>Array of objects (product.GiftGroup)<br><br>Gift Groups of product<br><br> |\n| giftOption | <br><br>string<br><br>Product Gift Option<br><br> |\n| hasOnlyDefaultVariant | <br><br>boolean<br><br>If product doesn't have any variant will be returned 'true'<br><br> |\n| id | <br><br>integer<br><br>Identifying number of product<br><br> |\n| imageUrls | <br><br>Array of strings<br><br>Product images<br><br> |\n| instantDiscount | <br><br>number<br><br>If product doesn't have instant discount will be returned 'empty string' otherwise returned with number<br><br> |\n| isDisplay | <br><br>boolean<br><br>If product is displaying on storefront will be returned 'true'<br><br> |\n| name | <br><br>string<br><br>Product name<br><br> |\n| variantOptions | <br><br>Array of objects (product.VariantOption)<br><br>Product options such as size or color<br><br> |\n| variants | <br><br>Array of objects (product.Variant)<br><br>Product variants<br><br> |\n\n**400** \n\nBad request\n\n##### RESPONSE SCHEMA: application/json\n\n| code | <br><br>stringEnum: \"BAD_REQUEST\" \"DATA_CONFLICT\" \"INTERNAL_ERROR\" \"NOT_FOUND\" \"PERMISSION_DENIED\" \"UNAUTHORIZED\"<br><br>Error code<br><br> |\n| info | <br><br>object<br><br>Error info (optional)<br><br> |\n| message | <br><br>string<br><br>Error message<br><br> |\n| timestamp | <br><br>integer<br><br>Response timestamp<br><br> |\n\n**404** \n\nNot found\n\n##### RESPONSE SCHEMA: application/json\n\n| code | <br><br>stringEnum: \"BAD_REQUEST\" \"DATA_CONFLICT\" \"INTERNAL_ERROR\" \"NOT_FOUND\" \"PERMISSION_DENIED\" \"UNAUTHORIZED\"<br><br>Error code<br><br> |\n| info | <br><br>object<br><br>Error info (optional)<br><br> |\n| message | <br><br>string<br><br>Error message<br><br> |\n| timestamp | <br><br>integer<br><br>Response timestamp<br><br> |\n\n**500** \n\nInternal error\n\n##### RESPONSE SCHEMA: application/json\n\n| code | <br><br>stringEnum: \"BAD_REQUEST\" \"DATA_CONFLICT\" \"INTERNAL_ERROR\" \"NOT_FOUND\" \"PERMISSION_DENIED\" \"UNAUTHORIZED\"<br><br>Error code<br><br> |\n| info | <br><br>object<br><br>Error info (optional)<br><br> |\n| message | <br><br>string<br><br>Error message<br><br> |\n| timestamp | <br><br>integer<br><br>Response timestamp<br><br> |"
+									},
+									"response": []
+								},
+								{
+									"name": "Delete product variant",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "User-Agent",
+												"value": "{{company_name}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"RED\",\n  \"value\": \"100\"\n}"
+										},
+										"url": {
+											"raw": "https://developers-oaplus.line.biz/myshop/v1/products/{{product_id}}/delete-variant-option",
+											"protocol": "https",
+											"host": [
+												"developers-oaplus",
+												"line",
+												"biz"
+											],
+											"path": [
+												"myshop",
+												"v1",
+												"products",
+												"{{product_id}}",
+												"delete-variant-option"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update product's display status",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "User-Agent",
+												"value": "{{company_name}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"brand\": \"string\",\n  \"category\": {\n    \"id\": 0,\n    \"nameEn\": \"string\",\n    \"nameTh\": \"string\"\n  },\n  \"code\": \"string\",\n  \"description\": \"string\",\n  \"giftGroups\": [\n    {\n      \"id\": 0,\n      \"nameEn\": \"string\",\n      \"nameTh\": \"string\"\n    }\n  ],\n  \"giftOption\": \"string\",\n  \"hasOnlyDefaultVariant\": true,\n  \"id\": 0,\n  \"imageUrls\": [\n    \"string\"\n  ],\n  \"instantDiscount\": 0,\n  \"isDisplay\": true,\n  \"name\": \"string\",\n  \"variantOptions\": [\n    {\n      \"name\": \"string\",\n      \"values\": [\n        \"string\"\n      ]\n    }\n  ],\n  \"variants\": [\n    {\n      \"availableNumber\": 0,\n      \"barcode\": \"string\",\n      \"discountedPrice\": 0,\n      \"id\": 0,\n      \"inventoryId\": 0,\n      \"onHandNumber\": 0,\n      \"options\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"price\": 0,\n      \"readyToShipNumber\": 0,\n      \"reservedNumber\": 0,\n      \"sku\": \"string\",\n      \"weight\": 0\n    }\n  ]\n}"
+										},
+										"url": {
+											"raw": "https://developers-oaplus.line.biz/myshop/v1/products/{{product_id}}/display-status/{{status}}",
+											"protocol": "https",
+											"host": [
+												"developers-oaplus",
+												"line",
+												"biz"
+											],
+											"path": [
+												"myshop",
+												"v1",
+												"products",
+												"{{product_id}}",
+												"display-status",
+												"{{status}}"
+											]
+										},
+										"description": "Enum: \"onsale\" \"hide\""
+									},
+									"response": []
+								},
+								{
+									"name": "Create product variants",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "User-Agent",
+												"value": "{{company_name}}",
+												"description": "ชื่อองค์กรหรือบริษัท",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"variantOptions\": {\n    \"option1\": {\n      \"data\": [\n        {\n          \"imageUrl\": \"https://cloud.ex10.tech/public/filestore/Screenshot2566-06-24at11-b1d5107d-1249-11ee-be63-2ec4184fafd2.png\",\n          \"value\": \"100\"\n        }\n      ],\n      \"name\": \"RED\"\n    }\n  },\n  \"variants\": [\n    {\n      \"barcode\": \"EX10DEMO\",\n      \"onHandNumber\": 100,\n      \"options\": [\n        0\n      ],\n      \"price\": 10,\n      \"sku\": \"each\",\n      \"weight\": 10\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://developers-oaplus.line.biz/myshop/v1/products/{{product_id}}/variants",
+											"protocol": "https",
+											"host": [
+												"developers-oaplus",
+												"line",
+												"biz"
+											],
+											"path": [
+												"myshop",
+												"v1",
+												"products",
+												"{{product_id}}",
+												"variants"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "[GET] Products",
+							"item": [
+								{
+									"name": "Get all products",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json();",
+													"pm.globals.set(\"product_id\", jsonData.data[0].id);",
+													"pm.globals.set(\"variants_id\", jsonData.data[0].variants[0].id);",
+													"pm.globals.set(\"inventory_id\", jsonData.data[0].variants[0].inventoryId);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"user-agent": true
+										}
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "User-Agent",
+												"value": "{{company_name}}",
+												"description": "ชื่อองค์กรหรือบริษัท",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://developers-oaplus.line.biz/myshop/v1/products",
+											"protocol": "https",
+											"host": [
+												"developers-oaplus",
+												"line",
+												"biz"
+											],
+											"path": [
+												"myshop",
+												"v1",
+												"products"
+											],
+											"query": [
+												{
+													"key": "ids",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "skus",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "page",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "perPage",
+													"value": null,
+													"disabled": true
+												}
+											]
+										},
+										"description": "## Get all products\n\nAn API for getting a list of products\n\n##### AUTHORIZATIONS:\n\n[X-API-KEY](https://www.line-website.com/oaplus-public-api-doc-client/#section/Authentication/X-API-KEY)\n\n##### QUERY PARAMETERS\n\n| ids | <br><br>Array of strings<br><br>Filtered by multiple values of product id<br><br> |\n| skus | <br><br>Array of strings<br><br>Filtered by multiple values of product sku<br><br> |\n| page | <br><br>integerDefault: 1<br><br>For pagination, page is the page number to query the list of products<br><br> |\n| perPage | <br><br>integer \\[ 1 .. 100 \\]Default: 25<br><br>For pagination, per page is the number of showing products on a page<br><br> |\n\n### Responses\n\n**200** \n\nSuccess\n\n##### RESPONSE SCHEMA: application/json\n\n| currentPage | <br><br>integer<br><br>Current page number<br><br> |\n| data | Array of objects (product.Response) |\n| perPage | <br><br>integer<br><br>Number of showing products per page<br><br> |\n| totalPage | <br><br>integer<br><br>Total page numbers of the result<br><br> |\n| totalRow | <br><br>integer<br><br>Total number of products<br><br> |\n\n**400** \n\nBad request\n\n##### RESPONSE SCHEMA: application/json\n\n| code | <br><br>stringEnum: \"BAD_REQUEST\" \"DATA_CONFLICT\" \"INTERNAL_ERROR\" \"NOT_FOUND\" \"PERMISSION_DENIED\" \"UNAUTHORIZED\"<br><br>Error code<br><br> |\n| info | <br><br>object<br><br>Error info (optional)<br><br> |\n| message | <br><br>string<br><br>Error message<br><br> |\n| timestamp | <br><br>integer<br><br>Response timestamp<br><br> |\n\n**404** \n\nNot found\n\n##### RESPONSE SCHEMA: application/json\n\n| code | <br><br>stringEnum: \"BAD_REQUEST\" \"DATA_CONFLICT\" \"INTERNAL_ERROR\" \"NOT_FOUND\" \"PERMISSION_DENIED\" \"UNAUTHORIZED\"<br><br>Error code<br><br> |\n| info | <br><br>object<br><br>Error info (optional)<br><br> |\n| message | <br><br>string<br><br>Error message<br><br> |\n| timestamp | <br><br>integer<br><br>Response timestamp<br><br> |\n\n**500** \n\nInternal error\n\n##### RESPONSE SCHEMA: application/json\n\n| code | <br><br>stringEnum: \"BAD_REQUEST\" \"DATA_CONFLICT\" \"INTERNAL_ERROR\" \"NOT_FOUND\" \"PERMISSION_DENIED\" \"UNAUTHORIZED\"<br><br>Error code<br><br> |\n| info | <br><br>object<br><br>Error info (optional)<br><br> |\n| message | <br><br>string<br><br>Error message<br><br> |\n| timestamp | <br><br>integer<br><br>Response timestamp<br><br> |"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "[PATCH] Update Product Price & Detail",
+							"item": [
+								{
+									"name": "Update product detail",
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "User-Agent",
+												"value": "{{company_name}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"brand\": \"ex10\",\n  \"categoryId\": 0,\n  \"code\": \"EX1001\",\n  \"description\": \"ex10 product demo\",\n  \"imageUrls\": [\n    \"https://cloud.ex10.tech/public/filestore/Screenshot2566-06-24at11-b1d5107d-1249-11ee-be63-2ec4184fafd2.png\"\n  ],\n  \"name\": \"ex10-demo2\"\n}"
+										},
+										"url": {
+											"raw": "https://developers-oaplus.line.biz/myshop/v1/products/{{product_id}}",
+											"protocol": "https",
+											"host": [
+												"developers-oaplus",
+												"line",
+												"biz"
+											],
+											"path": [
+												"myshop",
+												"v1",
+												"products",
+												"{{product_id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update product variant detail",
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "User-Agent",
+												"value": "{{company_name}}",
+												"description": "ชื่อองค์กรหรือบริษัท",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"barcode\": \"string\",\n  \"id\": {{variants_id}},\n  \"imageUrl\": \"https://cloud.ex10.tech/public/filestore/Screenshot2566-06-24at11-b1d5107d-1249-11ee-be63-2ec4184fafd2.png\",\n  \"onHandNumber\": 0,\n  \"price\": 100,\n  \"sku\": \"each\",\n  \"weight\": 40\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://developers-oaplus.line.biz/myshop/v1/products/{{product_id}}/variant",
+											"protocol": "https",
+											"host": [
+												"developers-oaplus",
+												"line",
+												"biz"
+											],
+											"path": [
+												"myshop",
+												"v1",
+												"products",
+												"{{product_id}}",
+												"variant"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update product price",
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "User-Agent",
+												"value": "{{company_name}}",
+												"description": "ชื่อองค์กรหรือบริษัท",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"instantDiscount\": 99999998,\n  \"variants\": [\n    {\n      \"id\": {{variants_id}},\n      \"price\": 1\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://developers-oaplus.line.biz/myshop/v1/products/{{product_id}}/prices",
+											"protocol": "https",
+											"host": [
+												"developers-oaplus",
+												"line",
+												"biz"
+											],
+											"path": [
+												"myshop",
+												"v1",
+												"products",
+												"{{product_id}}",
+												"prices"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "[DELETE] Product",
+							"item": [
+								{
+									"name": "Delete product",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "User-Agent",
+												"value": "{{company_name}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://developers-oaplus.line.biz/myshop/v1/products/{{product_id}}",
+											"protocol": "https",
+											"host": [
+												"developers-oaplus",
+												"line",
+												"biz"
+											],
+											"path": [
+												"myshop",
+												"v1",
+												"products",
+												"{{product_id}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					],
+					"description": "# Product\n\nManage your product via API"
+				},
+				{
+					"name": "Inventory API",
+					"item": [
+						{
+							"name": "[POST] Adjust & Increase",
+							"item": [
+								{
+									"name": "Adjust inventory",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "User-Agent",
+												"value": "{{company_name}}",
+												"description": "ชื่อองค์กรหรือบริษัท",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"amount\": 1\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://developers-oaplus.line.biz/myshop/v1/inventory/{{inventory_id}}/adjust",
+											"protocol": "https",
+											"host": [
+												"developers-oaplus",
+												"line",
+												"biz"
+											],
+											"path": [
+												"myshop",
+												"v1",
+												"inventory",
+												"{{inventory_id}}",
+												"adjust"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Increase inventory",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "User-Agent",
+												"value": "{{company_name}}",
+												"description": "ชื่อองค์กรหรือบริษัท",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"amount\": 12\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://developers-oaplus.line.biz/myshop/v1/inventory/{{inventory_id}}/decrease",
+											"protocol": "https",
+											"host": [
+												"developers-oaplus",
+												"line",
+												"biz"
+											],
+											"path": [
+												"myshop",
+												"v1",
+												"inventory",
+												"{{inventory_id}}",
+												"decrease"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "[PUT] Decrease",
+							"item": [
+								{
+									"name": "Decrease inventory",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "User-Agent",
+												"value": "{{company_name}}",
+												"description": "ชื่อองค์กรหรือบริษัท",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"amount\": 10\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://developers-oaplus.line.biz/myshop/v1/inventory/{{inventory_id}}/decrease",
+											"protocol": "https",
+											"host": [
+												"developers-oaplus",
+												"line",
+												"biz"
+											],
+											"path": [
+												"myshop",
+												"v1",
+												"inventory",
+												"{{inventory_id}}",
+												"decrease"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					],
+					"description": "# Inventory\n\nManage your inventory via API"
+				},
+				{
+					"name": "Order API",
+					"item": [
+						{
+							"name": "[GET] Order",
+							"item": [
+								{
+									"name": "Get all orders",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json();",
+													"pm.globals.set(\"orderNo\", jsonData.data[0].orderNumber);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "User-Agent",
+												"value": "{{company_name}}",
+												"description": "ชื่อองค์กรหรือบริษัท",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://developers-oaplus.line.biz/myshop/v1/orders",
+											"protocol": "https",
+											"host": [
+												"developers-oaplus",
+												"line",
+												"biz"
+											],
+											"path": [
+												"myshop",
+												"v1",
+												"orders"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Order detail",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "User-Agent",
+												"value": "{{company_name}}",
+												"description": "ชื่อองค์กรหรือบริษัท",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://developers-oaplus.line.biz/myshop/v1/orders/{{orderNo}}",
+											"protocol": "https",
+											"host": [
+												"developers-oaplus",
+												"line",
+												"biz"
+											],
+											"path": [
+												"myshop",
+												"v1",
+												"orders",
+												"{{orderNo}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "[POST] Paid (COD) & Ship",
+							"item": [
+								{
+									"name": "Mark as paid (COD)",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "User-Agent",
+												"value": "{{company_name}}",
+												"description": "ชื่อองค์กรหรือบริษัท",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://developers-oaplus.line.biz/myshop/v1/orders/{{orderNo}}/mark-as-paid",
+											"protocol": "https",
+											"host": [
+												"developers-oaplus",
+												"line",
+												"biz"
+											],
+											"path": [
+												"myshop",
+												"v1",
+												"orders",
+												"{{orderNo}}",
+												"mark-as-paid"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Mark as ship",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "User-Agent",
+												"value": "{{company_name}}",
+												"description": "ชื่อองค์กรหรือบริษัท",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"trackingNumber\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://developers-oaplus.line.biz/myshop/v1/orders/{{orderNo}}/mark-as-ship",
+											"protocol": "https",
+											"host": [
+												"developers-oaplus",
+												"line",
+												"biz"
+											],
+											"path": [
+												"myshop",
+												"v1",
+												"orders",
+												"{{orderNo}}",
+												"mark-as-ship"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "[PUT] Tracking Number",
+							"item": [
+								{
+									"name": "Update tracking number",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "User-Agent",
+												"value": "{{company_name}}",
+												"description": "ชื่อองค์กรหรือบริษัท",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"trackingNumber\": \"string\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://developers-oaplus.line.biz/myshop/v1/orders/{{orderNo}}/shipments",
+											"protocol": "https",
+											"host": [
+												"developers-oaplus",
+												"line",
+												"biz"
+											],
+											"path": [
+												"myshop",
+												"v1",
+												"orders",
+												"{{orderNo}}",
+												"shipments"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					],
+					"description": "# Order\n\nManage your order via API"
+				}
+			],
+			"description": "# Getting started\n\nOAPlus public API allows you to integrate and manipulate your collected/stored data in our system. The API is based on REST principles supporting GET, POST, PUT, DELETE, and PATCH request. API usage may be limited to the service allowed (such as MyCustomer API access) and some may be available for all users (such as LINE SHOPPING API)\n\n## Issue an API key\n\nIn order to access our APIs, you will need an **Access Token**. As **Admin** role, you will first need to go to the **API key** page (located under Settings → API keys page from sidebar menu), then click the \"Generate\" button. You will then have generated an API Key **Access Token** as shown in the image below  \n  \n  \n\n## Request headers\n\nThe following HTTP headers are included in API request.\n\n| Header | Description | Notes |\n| --- | --- | --- |\n| User-Agents Optional | The User-Agent request header is a characteristic string that lets servers and network peers identify the application, operating system, vendor, and/or version of the requesting user agent. Suggestion value is your `service name`, or `company name`. | `User-Agent: OA Plus Platform` |\n\n# Authentication\n\nTo authenticate and start using our APIs, you will need to send an [Access Token](https://www.line-website.com/oaplus-public-api-doc-client/#section/Getting-Started/Issue-an-API-Key) via `X-API-KEY` header in your API calls.\n\n## X-API-KEY\n\n| Security Scheme Type | API Key |\n| Header parameter name: | X-API-KEY |\n\n# Common specification\n\n## Base URL\n\nAll URLs referenced in the documentation have the following base: [https://developers-oaplus.line.biz](https://developers-oaplus.line.biz/)  \nFor example\n\n- [https://developers-oaplus.line.biz/audience/v1/group/groups](https://developers-oaplus.line.biz/audience/v1/group/groups)\n- [https://developers-oaplus.line.biz/myshop/vi/products](https://developers-oaplus.line.biz/myshop/vi/products)\n- [https://developers-oaplus.line.biz/myshop/v1/orders/{orderNo}/mark-as-paid](https://developers-oaplus.line.biz/myshop/v1/orders/{orderNo}/mark-as-paid)\n    \n\n## Possible response status codes\n\n| Status Code | Description | Notes |\n| --- | --- | --- |\n| 200 | OK | The request was successful. |\n| 400 | Bad Request | The request could not be understood by the server. Parameter might be invalid. |\n| 401 | Unauthorized | The request might be contain invalid Channel Access Token. |\n| 403 | Forbidden | Not authorized to access the resource. |\n| 404 | Not Found | The requested resource is not found. |\n| 429 | Too Many Request | The request is exceeded the rate limit. |\n| 500 | Internal Server Error | The server could not return the representation due to an internal server error. |\n\n## Rate limit\n\nA rate limit is the number of API calls that can be made within a given time period. If this limit is exceeded, you will receive an error message saying, **429 Too Many Requests.**  \n  \n\n| API | Resource | Rate Limit Request |\n| --- | --- | --- |\n| Per Hour | Per Minute | Per Second |\n| LINE SHOPPING API | Product API | \\- | 1,000 | 50 |\n| Order API | \\- | 1,000 | 50 |\n| Inventory API | \\- | 1,000 | 50 |\n| Other APIs | 5,000 | \\- | 500 |",
+			"auth": {
+				"type": "apikey",
+				"apikey": [
+					{
+						"key": "in",
+						"value": "header",
+						"type": "string"
+					},
+					{
+						"key": "value",
+						"value": "{{x_api_key}}",
+						"type": "string"
+					},
+					{
+						"key": "key",
+						"value": "X-API-KEY",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		}
