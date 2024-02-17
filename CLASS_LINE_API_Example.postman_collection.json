@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "fd95802d-2d90-4a8c-b76a-f3b679a0cad2",
 		"name": "CLASS LINE API Example",
-		"description": "สวัสดีครับทุกทาย เราโอ๋ เทพนที โพธิ์จันทร์ [LINE API Expert]()\n\nPostman Collection Class LINE API Expert นี้\n\nได้ทำไว้เพื่อเป็นประโยชน์ แก่สาธารณะ ห้ามมิให้นำไปใช้เชิงพาณิชย์\n\nหวังให้เป็นประโยชน์แด่เพื่อนๆ ชาว LINE Developers ทุกท่าน ขอบคุณครับ",
+		"description": "สวัสดีครับทุกท่าน เราโอ๋ เทพนที โพธิ์จันทร์ [LINE API Expert]()\n\nPostman Collection Class LINE API Expert นี้\n\nได้ทำไว้เพื่อเป็นประโยชน์ แก่สาธารณะ ห้ามมิให้นำไปใช้เชิงพาณิชย์\n\nหวังให้เป็นประโยชน์แด่เพื่อนๆ ชาว LINE Developers ทุกท่าน ขอบคุณครับ",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "16611391"
 	},
@@ -14,283 +14,364 @@
 					"name": "Channel access token",
 					"item": [
 						{
-							"name": "LINE LOGIN",
+							"name": "Type",
 							"item": [
 								{
-									"name": "Issue channel access token v2.1",
-									"request": {
-										"auth": {
-											"type": "noauth"
-										},
-										"method": "POST",
-										"header": [
-											{
-												"key": "Content-Type",
-												"value": "application/x-www-form-urlencoded"
-											}
-										],
-										"body": {
-											"mode": "urlencoded",
-											"urlencoded": [
+									"name": "short-lived",
+									"item": [
+										{
+											"name": "Issue short-lived channel access token",
+											"event": [
 												{
-													"key": "grant_type",
-													"value": "client_credentials",
-													"type": "text"
-												},
-												{
-													"key": "client_assertion_type",
-													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-													"type": "text"
-												},
-												{
-													"key": "client_assertion",
-													"value": "{{JWT}}",
-													"type": "text"
+													"listen": "test",
+													"script": {
+														"exec": [
+															"var jsonData = pm.response.json();",
+															"pm.globals.set(\"access_token\", jsonData.access_token);"
+														],
+														"type": "text/javascript"
+													}
 												}
-											]
-										},
-										"url": {
-											"raw": "https://api.line.me/oauth2/v2.1/token",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
 											],
-											"path": [
-												"oauth2",
-												"v2.1",
-												"token"
-											]
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/x-www-form-urlencoded"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "grant_type",
+															"value": "client_credentials",
+															"type": "text"
+														},
+														{
+															"key": "client_id",
+															"value": "{{client_id}}",
+															"description": "channel id",
+															"type": "text"
+														},
+														{
+															"key": "client_secret",
+															"value": "{{client_secret}}",
+															"description": "channel secret",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "https://api.line.me/v2/oauth/accessToken",
+													"protocol": "https",
+													"host": [
+														"api",
+														"line",
+														"me"
+													],
+													"path": [
+														"v2",
+														"oauth",
+														"accessToken"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Verify the validity of short-lived and long-lived channel access tokens",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/x-www-form-urlencoded"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "access_token",
+															"value": "{{access_token}}",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "https://api.line.me/v2/oauth/verify",
+													"protocol": "https",
+													"host": [
+														"api",
+														"line",
+														"me"
+													],
+													"path": [
+														"v2",
+														"oauth",
+														"verify"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Revoke short-lived or long-lived channel access token",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/x-www-form-urlencoded"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "access_token",
+															"value": "{{access_token}}",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "https://api.line.me/v2/oauth/revoke",
+													"protocol": "https",
+													"host": [
+														"api",
+														"line",
+														"me"
+													],
+													"path": [
+														"v2",
+														"oauth",
+														"revoke"
+													]
+												}
+											},
+											"response": []
 										}
-									},
-									"response": []
+									]
 								},
 								{
-									"name": "Verify the validity of the channel access token v2.1",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"method": "GET",
-										"header": [
-											{
-												"key": "Content-Type",
-												"value": "application/x-www-form-urlencoded"
-											}
-										],
-										"body": {
-											"mode": "urlencoded",
-											"urlencoded": [
-												{
-													"key": "access_token",
-													"value": "eyJhbGciOiJIUzI1NiJ9.UnQ_o-GP0VtnwDjbK0C8E_NvK...",
-													"type": "text"
+									"name": "V2.1",
+									"item": [
+										{
+											"name": "Issue channel access token v2.1",
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/x-www-form-urlencoded"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "grant_type",
+															"value": "client_credentials",
+															"type": "text"
+														},
+														{
+															"key": "client_assertion_type",
+															"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+															"type": "text"
+														},
+														{
+															"key": "client_assertion",
+															"value": "{{JWT}}",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "https://api.line.me/oauth2/v2.1/token",
+													"protocol": "https",
+													"host": [
+														"api",
+														"line",
+														"me"
+													],
+													"path": [
+														"oauth2",
+														"v2.1",
+														"token"
+													]
 												}
-											]
+											},
+											"response": []
 										},
-										"url": {
-											"raw": "https://api.line.me/oauth2/v2.1/verify?access_token={{access_token}}",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
-											],
-											"path": [
-												"oauth2",
-												"v2.1",
-												"verify"
-											],
-											"query": [
-												{
-													"key": "access_token",
-													"value": "{{access_token}}"
+										{
+											"name": "Verify the validity of the channel access token v2.1",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/x-www-form-urlencoded"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "access_token",
+															"value": "eyJhbGciOiJIUzI1NiJ9.UnQ_o-GP0VtnwDjbK0C8E_NvK...",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "https://api.line.me/oauth2/v2.1/verify?access_token={{access_token}}",
+													"protocol": "https",
+													"host": [
+														"api",
+														"line",
+														"me"
+													],
+													"path": [
+														"oauth2",
+														"v2.1",
+														"verify"
+													],
+													"query": [
+														{
+															"key": "access_token",
+															"value": "{{access_token}}"
+														}
+													]
 												}
-											]
+											},
+											"response": []
+										},
+										{
+											"name": "Revoke channel access token v2.1",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "client_id",
+															"value": "{{client_id}}",
+															"type": "text"
+														},
+														{
+															"key": "client_secret",
+															"value": "{{client_secret}}",
+															"type": "text"
+														},
+														{
+															"key": "access_token",
+															"value": "{{access_token}}",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "https://api.line.me/oauth2/v2.1/revoke",
+													"protocol": "https",
+													"host": [
+														"api",
+														"line",
+														"me"
+													],
+													"path": [
+														"oauth2",
+														"v2.1",
+														"revoke"
+													]
+												}
+											},
+											"response": []
 										}
-									},
-									"response": []
+									]
 								},
 								{
-									"name": "Revoke channel access token v2.1",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "urlencoded",
-											"urlencoded": [
+									"name": "stateless",
+									"item": [
+										{
+											"name": "Issue",
+											"event": [
 												{
-													"key": "client_id",
-													"value": "{{client_id}}",
-													"type": "text"
-												},
-												{
-													"key": "client_secret",
-													"value": "{{client_secret}}",
-													"type": "text"
-												},
-												{
-													"key": "access_token",
-													"value": "{{access_token}}",
-													"type": "text"
+													"listen": "test",
+													"script": {
+														"exec": [
+															"var jsonData = pm.response.json();",
+															"pm.globals.set(\"access_token\", jsonData.access_token);"
+														],
+														"type": "text/javascript"
+													}
 												}
-											]
-										},
-										"url": {
-											"raw": "https://api.line.me/oauth2/v2.1/revoke",
-											"protocol": "https",
-											"host": [
-												"api",
-												"line",
-												"me"
 											],
-											"path": [
-												"oauth2",
-												"v2.1",
-												"revoke"
-											]
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/x-www-form-urlencoded"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "grant_type",
+															"value": "client_credentials",
+															"type": "text"
+														},
+														{
+															"key": "client_id",
+															"value": "{{client_id}}",
+															"description": "channel id",
+															"type": "text"
+														},
+														{
+															"key": "client_secret",
+															"value": "{{client_secret}}",
+															"description": "channel secret",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "https://api.line.me/oauth2/v3/token",
+													"protocol": "https",
+													"host": [
+														"api",
+														"line",
+														"me"
+													],
+													"path": [
+														"oauth2",
+														"v3",
+														"token"
+													]
+												}
+											},
+											"response": []
 										}
-									},
-									"response": []
+									]
 								}
 							]
-						},
-						{
-							"name": "Issue short-lived channel access token",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"var jsonData = pm.response.json();",
-											"pm.globals.set(\"access_token\", jsonData.access_token);"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "grant_type",
-											"value": "client_credentials",
-											"type": "text"
-										},
-										{
-											"key": "client_id",
-											"value": "{{client_id}}",
-											"type": "text"
-										},
-										{
-											"key": "client_secret",
-											"value": "{{client_secret}}",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "https://api.line.me/v2/oauth/accessToken",
-									"protocol": "https",
-									"host": [
-										"api",
-										"line",
-										"me"
-									],
-									"path": [
-										"v2",
-										"oauth",
-										"accessToken"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Verify the validity of short-lived and long-lived channel access tokens",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "access_token",
-											"value": "{{access_token}}",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "https://api.line.me/v2/oauth/verify",
-									"protocol": "https",
-									"host": [
-										"api",
-										"line",
-										"me"
-									],
-									"path": [
-										"v2",
-										"oauth",
-										"verify"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Revoke short-lived or long-lived channel access token",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "access_token",
-											"value": "{{access_token}}",
-											"type": "text"
-										}
-									]
-								},
-								"url": {
-									"raw": "https://api.line.me/v2/oauth/revoke",
-									"protocol": "https",
-									"host": [
-										"api",
-										"line",
-										"me"
-									],
-									"path": [
-										"v2",
-										"oauth",
-										"revoke"
-									]
-								}
-							},
-							"response": []
 						}
 					]
 				},
@@ -539,6 +620,67 @@
 														"{messageId}",
 														"content",
 														"preview"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "membership",
+									"item": [
+										{
+											"name": "Get a user's membership subscription status",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Authorization",
+														"value": "Bearer {{access_token}}"
+													}
+												],
+												"url": {
+													"raw": "https://api.line.me/membership/v1/subscription/{{userId}}",
+													"protocol": "https",
+													"host": [
+														"api",
+														"line",
+														"me"
+													],
+													"path": [
+														"membership",
+														"v1",
+														"subscription",
+														"{{userId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Get membership plans being offered",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+														"key": "Authorization",
+														"value": "Bearer {{access_token}}"
+													}
+												],
+												"url": {
+													"raw": "https://api.line.me/membership/v1/list",
+													"protocol": "https",
+													"host": [
+														"api",
+														"line",
+														"me"
+													],
+													"path": [
+														"membership",
+														"v1",
+														"list"
 													]
 												}
 											},
@@ -1667,7 +1809,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"to\": \"{{userid}}\",\r\n    \"messages\": [\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"Hello, world2\"\r\n        }\r\n    ]\r\n}"
+											"raw": "{\r\n    \"to\": \"{{userid}}\",\r\n    \"messages\": [\r\n        {\r\n            \"type\": \"image\",\r\n            \"originalContentUrl\": \"https://sv1.picz.in.th/images/2023/09/27/ddW1pft.jpeg\",\r\n            \"previewImageUrl\": \"https://sv1.picz.in.th/images/2023/09/27/ddW1pft.jpeg\"\r\n        }\r\n    ]\r\n}"
 										},
 										"url": {
 											"raw": "https://api.line.me/v2/bot/message/push",
@@ -3502,7 +3644,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"richmenu-b\",\r\n    \"chatBarText\": \"Menu\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 70,\r\n                \"y\": 268,\r\n                \"width\": 581,\r\n                \"height\": 125\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-a\",\r\n                \"data\": \"richmenu=a\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 954,\r\n                \"y\": 571,\r\n                \"width\": 1389,\r\n                \"height\": 254\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"EX10 CRM ช่วยคุณได้อย่างไร\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 960,\r\n                \"y\": 934,\r\n                \"width\": 1337,\r\n                \"height\": 222\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://ex10-crm-manual.web.app/?openExternalBrowser=1#0\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 955,\r\n                \"y\": 1286,\r\n                \"width\": 1370,\r\n                \"height\": 213\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"สอบถามค่าบริการ EX10 CRM\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1353,\r\n                \"y\": 44,\r\n                \"width\": 660,\r\n                \"height\": 137\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ติดต่อเจ้าหน้าที่\"\r\n            }\r\n        }\r\n    ]\r\n}"
+											"raw": "{\r\n    \"size\": {\r\n      \"width\": 2500,\r\n      \"height\": 1686\r\n    },\r\n    \"selected\": false,\r\n    \"name\": \"Nice richmenu\",\r\n    \"chatBarText\": \"Tap here\",\r\n    \"areas\": [\r\n      {\r\n        \"bounds\": {\r\n          \"x\": 0,\r\n          \"y\": 0,\r\n          \"width\": 2500,\r\n          \"height\": 1686\r\n        },\r\n        \"action\": {\r\n          \"type\": \"postback\",\r\n          \"data\": \"action=buy&itemid=123\"\r\n        }\r\n      }\r\n   ]\r\n}"
 										},
 										"url": {
 											"raw": "https://api.line.me/v2/bot/richmenu",
@@ -3577,7 +3719,7 @@
 										"body": {
 											"mode": "file",
 											"file": {
-												"src": "/Users/thepnatee/Desktop/works/asset-wise/document/richmenu/richmenu_1686217988791.jpg"
+												"src": ""
 											}
 										},
 										"url": {
@@ -3766,7 +3908,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"richmenu-a\",\r\n    \"chatBarText\": \"Menu\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 70,\r\n                \"y\": 268,\r\n                \"width\": 581,\r\n                \"height\": 125\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-b\",\r\n                \"data\": \"richmenu=b\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 954,\r\n                \"y\": 571,\r\n                \"width\": 1389,\r\n                \"height\": 254\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"EX10 CRM ช่วยคุณได้อย่างไร\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 960,\r\n                \"y\": 934,\r\n                \"width\": 1337,\r\n                \"height\": 222\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://ex10-crm-manual.web.app/?openExternalBrowser=1#0\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 955,\r\n                \"y\": 1286,\r\n                \"width\": 1370,\r\n                \"height\": 213\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"สอบถามค่าบริการ EX10 CRM\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1353,\r\n                \"y\": 44,\r\n                \"width\": 660,\r\n                \"height\": 137\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ติดต่อเจ้าหน้าที่\"\r\n            }\r\n        }\r\n    ]\r\n}"
+											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"Staff\",\r\n    \"chatBarText\": \"Click\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1210,\r\n                \"y\": 259,\r\n                \"width\": 1193,\r\n                \"height\": 610\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://liff.line.me/2000633139-kDynMvpL\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1222,\r\n                \"y\": 1082,\r\n                \"width\": 1198,\r\n                \"height\": 468\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://liff.line.me/2000633139-DKoQ5l0N\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 75,\r\n                \"y\": 262,\r\n                \"width\": 938,\r\n                \"height\": 1351\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ข้อมูลโครงการ\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1998,\r\n                \"y\": 38,\r\n                \"width\": 468,\r\n                \"height\": 131\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-c\",\r\n                \"data\": \"richmenu=c\"\r\n            }\r\n        }\r\n    ]\r\n}"
 										},
 										"url": {
 											"raw": "https://api.line.me/v2/bot/richmenu",
@@ -3816,7 +3958,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"richmenu-b\",\r\n    \"chatBarText\": \"Menu\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 70,\r\n                \"y\": 268,\r\n                \"width\": 581,\r\n                \"height\": 125\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-a\",\r\n                \"data\": \"richmenu=a\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 954,\r\n                \"y\": 571,\r\n                \"width\": 1389,\r\n                \"height\": 254\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"EX10 CRM ช่วยคุณได้อย่างไร\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 960,\r\n                \"y\": 934,\r\n                \"width\": 1337,\r\n                \"height\": 222\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://ex10-crm-manual.web.app/?openExternalBrowser=1#0\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 955,\r\n                \"y\": 1286,\r\n                \"width\": 1370,\r\n                \"height\": 213\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"สอบถามค่าบริการ EX10 CRM\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1353,\r\n                \"y\": 44,\r\n                \"width\": 660,\r\n                \"height\": 137\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ติดต่อเจ้าหน้าที่\"\r\n            }\r\n        }\r\n    ]\r\n}"
+											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"Manager\",\r\n    \"chatBarText\": \"Click\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1210,\r\n                \"y\": 259,\r\n                \"width\": 1193,\r\n                \"height\": 610\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://liff.line.me/2000633139-kDynMvpL\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1850,\r\n                \"y\": 1437,\r\n                \"width\": 503,\r\n                \"height\": 187\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ข้อมูลรายงาน\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1160,\r\n                \"y\": 955,\r\n                \"width\": 564,\r\n                \"height\": 679\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://liff.line.me/2000633139-DKoQ5l0N\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1785,\r\n                \"y\": 955,\r\n                \"width\": 632,\r\n                \"height\": 672\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ข้อมูลรายงาน\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 75,\r\n                \"y\": 262,\r\n                \"width\": 938,\r\n                \"height\": 1351\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ข้อมูลโครงการ\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1959,\r\n                \"y\": 24,\r\n                \"width\": 496,\r\n                \"height\": 123\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-d\",\r\n                \"data\": \"richmenu=d\"\r\n            }\r\n        }\r\n    ]\r\n}"
 										},
 										"url": {
 											"raw": "https://api.line.me/v2/bot/richmenu",
@@ -3836,7 +3978,107 @@
 									"response": []
 								},
 								{
-									"name": "[3]Upload the rich menu image A",
+									"name": "[3]Create a rich menu C",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json();",
+													"pm.globals.set(\"richMenuId_C\", jsonData.richMenuId);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"Page2-1\",\r\n    \"chatBarText\": \"Click\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 64,\r\n                \"y\": 147,\r\n                \"width\": 1581,\r\n                \"height\": 744\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ASW Sync Calendar\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1709,\r\n                \"y\": 192,\r\n                \"width\": 738,\r\n                \"height\": 697\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ข้อมูลองค์กร\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 81,\r\n                \"y\": 985,\r\n                \"width\": 752,\r\n                \"height\": 643\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"IT Service\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 927,\r\n                \"y\": 979,\r\n                \"width\": 618,\r\n                \"height\": 639\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"IP/IC\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1662,\r\n                \"y\": 953,\r\n                \"width\": 716,\r\n                \"height\": 669\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"Contact BU\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 2021,\r\n                \"y\": 19,\r\n                \"width\": 415,\r\n                \"height\": 128\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-a\",\r\n                \"data\": \"richmenu=a\"\r\n            }\r\n        }\r\n    ]\r\n}"
+										},
+										"url": {
+											"raw": "https://api.line.me/v2/bot/richmenu",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"richmenu"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[3]Create a rich menu D",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = pm.response.json();",
+													"pm.globals.set(\"richMenuId_D\", jsonData.richMenuId);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"Page2-2\",\r\n    \"chatBarText\": \"Click\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 64,\r\n                \"y\": 147,\r\n                \"width\": 1581,\r\n                \"height\": 744\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ASW Sync Calendar\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1709,\r\n                \"y\": 192,\r\n                \"width\": 738,\r\n                \"height\": 697\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ข้อมูลองค์กร\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 81,\r\n                \"y\": 985,\r\n                \"width\": 752,\r\n                \"height\": 643\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"IT Service\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 927,\r\n                \"y\": 979,\r\n                \"width\": 618,\r\n                \"height\": 639\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"IP/IC\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1662,\r\n                \"y\": 953,\r\n                \"width\": 716,\r\n                \"height\": 669\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"Contact BU\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 2021,\r\n                \"y\": 19,\r\n                \"width\": 415,\r\n                \"height\": 128\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-b\",\r\n                \"data\": \"richmenu=b\"\r\n            }\r\n        }\r\n    ]\r\n}"
+										},
+										"url": {
+											"raw": "https://api.line.me/v2/bot/richmenu",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"richmenu"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[4]Upload the rich menu image A",
 									"request": {
 										"method": "POST",
 										"header": [
@@ -3878,7 +4120,7 @@
 									"response": []
 								},
 								{
-									"name": "[4]Upload the rich menu image B",
+									"name": "[5]Upload the rich menu image B",
 									"request": {
 										"method": "POST",
 										"header": [
@@ -3920,7 +4162,91 @@
 									"response": []
 								},
 								{
-									"name": "[5]Set the default rich menu A",
+									"name": "[6]Upload the rich menu image C",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "image/jpeg",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "file",
+											"file": {
+												"src": "/Users/thepnatee/Desktop/works/asset-wise/document/richmenu/Richmenu New/page2.png"
+											}
+										},
+										"url": {
+											"raw": "https://api-data.line.me/v2/bot/richmenu/{{richMenuId_C}}/content",
+											"protocol": "https",
+											"host": [
+												"api-data",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"richmenu",
+												"{{richMenuId_C}}",
+												"content"
+											]
+										},
+										"description": "Image format: JPEG or PNG\r\nImage size (pixels): 2500x1686, 2500x843, 1200x810, 1200x405, 800x540, 800x270\r\nMaximum file size: 1 MB"
+									},
+									"response": []
+								},
+								{
+									"name": "[6]Upload the rich menu image D",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "image/jpeg",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "file",
+											"file": {
+												"src": "/Users/thepnatee/Desktop/works/asset-wise/document/richmenu/Richmenu New/page2.png"
+											}
+										},
+										"url": {
+											"raw": "https://api-data.line.me/v2/bot/richmenu/{{richMenuId_D}}/content",
+											"protocol": "https",
+											"host": [
+												"api-data",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"richmenu",
+												"{{richMenuId_D}}",
+												"content"
+											]
+										},
+										"description": "Image format: JPEG or PNG\r\nImage size (pixels): 2500x1686, 2500x843, 1200x810, 1200x405, 800x540, 800x270\r\nMaximum file size: 1 MB"
+									},
+									"response": []
+								},
+								{
+									"name": "[7]Set the default rich menu A",
 									"request": {
 										"method": "POST",
 										"header": [
@@ -3955,7 +4281,7 @@
 									"response": []
 								},
 								{
-									"name": "[6]Create rich menu alias A",
+									"name": "[8]Create rich menu alias A",
 									"request": {
 										"method": "POST",
 										"header": [
@@ -3967,7 +4293,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"richMenuAliasId\": \"richmenu-alias-a\",\r\n    \"richMenuId\": \"{{richMenuId_A}}\"\r\n}",
+											"raw": "{\r\n    \"richMenuAliasId\": \"richmenu-a\",\r\n    \"richMenuId\": \"{{richMenuId_A}}\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3993,7 +4319,7 @@
 									"response": []
 								},
 								{
-									"name": "[7]Create rich menu alias B",
+									"name": "[9]Create rich menu alias B",
 									"request": {
 										"method": "POST",
 										"header": [
@@ -4005,7 +4331,83 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"richMenuAliasId\": \"richmenu-alias-b\",\r\n    \"richMenuId\": \"{{richMenuId_B}}\"\r\n}",
+											"raw": "{\r\n    \"richMenuAliasId\": \"richmenu-b\",\r\n    \"richMenuId\": \"{{richMenuId_B}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://api.line.me/v2/bot/richmenu/alias",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"richmenu",
+												"alias"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[10]Create rich menu alias C",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"richMenuAliasId\": \"richmenu-c\",\r\n    \"richMenuId\": \"{{richMenuId_C}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://api.line.me/v2/bot/richmenu/alias",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"richmenu",
+												"alias"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[10]Create rich menu alias D",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"richMenuAliasId\": \"richmenu-d\",\r\n    \"richMenuId\": \"{{richMenuId_D}}\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -4360,7 +4762,7 @@
 													}
 												],
 												"url": {
-													"raw": "https://api.line.me/v2/bot/richmenu/alias/richmenu-alias-a",
+													"raw": "https://api.line.me/v2/bot/richmenu/alias/richmenu-a",
 													"protocol": "https",
 													"host": [
 														"api",
@@ -4372,7 +4774,7 @@
 														"bot",
 														"richmenu",
 														"alias",
-														"richmenu-alias-a"
+														"richmenu-a"
 													]
 												}
 											},
@@ -5578,6 +5980,70 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Before Using Setup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.globals.set(\"access_token\", jsonData.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"description": "channel id",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{client_secret}}",
+									"description": "channel secret",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.line.me/v2/oauth/accessToken",
+							"protocol": "https",
+							"host": [
+								"api",
+								"line",
+								"me"
+							],
+							"path": [
+								"v2",
+								"oauth",
+								"accessToken"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"event": [
@@ -5911,7 +6377,7 @@
 			"name": "Server API",
 			"item": [
 				{
-					"name": "Channel Access Token",
+					"name": "[Step 1] Channel Access Token",
 					"item": [
 						{
 							"name": "Issue short-lived channel access token",
@@ -5945,12 +6411,12 @@
 										},
 										{
 											"key": "client_id",
-											"value": "{{client_id}}",
+											"value": "{{line_login_client_id}}",
 											"type": "text"
 										},
 										{
 											"key": "client_secret",
-											"value": "{{client_secret}}",
+											"value": "{{line_login_client_secret}}",
 											"type": "text"
 										}
 									]
@@ -5975,7 +6441,7 @@
 					]
 				},
 				{
-					"name": "Create LIFF",
+					"name": "[Step 2] Create LIFF",
 					"item": [
 						{
 							"name": "Adding the LIFF app to a channel",
@@ -6006,7 +6472,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"view\": {\n        \"type\": \"full\",\n        \"url\": \"https://example.com/myservice\"\n    },\n    \"description\": \"Service Example\",\n    \"features\": {\n        \"ble\": true,\n        \"qrCode\": true\n    },\n    \"permanentLinkPattern\": \"concat\",\n    \"scope\": [\"profile\", \"chat_message.write\"],\n    \"botPrompt\": \"none\"\n}"
+									"raw": "{\n    \"view\": {\n        \"type\": \"full\",\n        \"url\": \"https://example.com/myservice\"\n    },\n    \"description\": \"Service\",\n    \"features\": {\n        \"ble\": true,\n        \"qrCode\": true\n    },\n    \"permanentLinkPattern\": \"concat\",\n    \"scope\": [\"profile\", \"chat_message.write\"],\n    \"botPrompt\": \"none\"\n}"
 								},
 								"url": {
 									"raw": "https://api.line.me/liff/v1/apps",
@@ -6141,7 +6607,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer {{notify_access_token}}",
+								"value": "Bearer {{notify_token}}",
 								"type": "text"
 							}
 						],
