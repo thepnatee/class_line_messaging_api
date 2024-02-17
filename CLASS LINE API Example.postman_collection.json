@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "fd95802d-2d90-4a8c-b76a-f3b679a0cad2",
 		"name": "CLASS LINE API Example",
-		"description": "สวัสดีครับทุกท่าน เราโอ๋ เทพนที โพธิ์จันทร์ [LINE API Expert]()\n\nPostman Collection Class LINE API Expert นี้\n\nได้ทำไว้เพื่อเป็นประโยชน์ แก่สาธารณะ ห้ามมิให้นำไปใช้เชิงพาณิชย์\n\nหวังให้เป็นประโยชน์แด่เพื่อนๆ ชาว LINE Developers ทุกท่าน ขอบคุณครับ",
+		"description": "Postman Collection Class LINE API Example นี้\n\nได้ทำไว้เพื่อเป็นประโยชน์ แก่สาธารณะ ห้ามมิให้นำไปใช้เชิงพาณิชย์\n\nหวังให้เป็นประโยชน์แด่เพื่อนๆ ชาว LINE Developers ทุกท่าน ขอบคุณครับ",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "16611391"
 	},
