@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "fd95802d-2d90-4a8c-b76a-f3b679a0cad2",
 		"name": "CLASS LINE API Example",
-		"description": "Postman Collection Class LINE API Example นี้\n\nได้ทำไว้เพื่อเป็นประโยชน์ แก่สาธารณะ ห้ามมิให้นำไปใช้เชิงพาณิชย์\n\nหวังให้เป็นประโยชน์แด่เพื่อนๆ ชาว LINE Developers ทุกท่าน ขอบคุณครับ",
+		"description": "สวัสดีครับทุกท่าน เราโอ๋ เทพนที โพธิ์จันทร์ [LINE API Expert]()\n\nPostman Collection Class LINE API Expert นี้\n\nได้ทำไว้เพื่อเป็นประโยชน์ แก่สาธารณะ ห้ามมิให้นำไปใช้เชิงพาณิชย์\n\nหวังให้เป็นประโยชน์แด่เพื่อนๆ ชาว LINE Developers ทุกท่าน ขอบคุณครับ",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "16611391"
 	},
@@ -1884,7 +1884,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"replyToken\":\"{{replyTokenId}}\",\r\n    \"messages\":[\r\n        {\r\n            \"type\":\"text\",\r\n            \"text\":\"Hello, user\"\r\n        },\r\n        {\r\n            \"type\":\"text\",\r\n            \"text\":\"May I help you?\"\r\n        }\r\n    ]\r\n}"
+											"raw": "{\r\n    \"replyToken\": \"dfa65bfc659c491080a12784bd8c181e\",\r\n    \"messages\": [\r\n        {\r\n            \"type\": \"text\",\r\n            \"text\": \"ผู้สร้างห้อง thepnatee เลือก scissors\\\\n-----ผู้ชนะได้แก่-----\\\\n 1.<earth> ✅\\\\n------ \\\\nแพ้เป็นพระ คนชนะคนนี้เป็นของเธอนะ\",\r\n            \"quickReply\": {\r\n                \"items\": [\r\n                    {\r\n                        \"type\": \"action\",\r\n                        \"imageUrl\": \"https://bucket.ex10.tech/images/8d325cbc-d31f-11ee-97d4-0242ac12000b/originalContentUrl.png\",\r\n                        \"action\": {\r\n                            \"type\": \"clipboard\",\r\n                            \"label\": \"คัดลองโค้ด\",\r\n                            \"text\": \"LINE1000\"\r\n                        }\r\n                    },\r\n                    {\r\n                        \"type\": \"action\",\r\n                        \"imageUrl\": \"https://bucket.ex10.tech/images/8d325cbc-d31f-11ee-97d4-0242ac12000b/originalContentUrl.png\",\r\n                        \"action\": {\r\n                            \"type\": \"clipboard\",\r\n                            \"label\": \"รายชื่อผู้เสมอ\",\r\n                            \"text\": \"ไม่พบชื่อผู้ชนะ\"\r\n                        }\r\n                    },\r\n                    {\r\n                        \"type\": \"action\",\r\n                        \"imageUrl\": \"https://bucket.ex10.tech/images/8d325cbc-d31f-11ee-97d4-0242ac12000b/originalContentUrl.png\",\r\n                        \"action\": {\r\n                            \"type\": \"clipboard\",\r\n                            \"label\": \"รายชื่อผู้แพ้\",\r\n                            \"text\": \"ไม่พบชื่อผู้ชนะ\"\r\n                        }\r\n                    },\r\n                    {\r\n                        \"type\": \"action\",\r\n                        \"imageUrl\": \"https://bucket.ex10.tech/images/8d325cbc-d31f-11ee-97d4-0242ac12000b/originalContentUrl.png\",\r\n                        \"action\": {\r\n                            \"type\": \"message\",\r\n                            \"label\": \"เข้าร่วม\",\r\n                            \"text\": \"เข้าร่วม\"\r\n                        }\r\n                    },\r\n                    {\r\n                        \"type\": \"action\",\r\n                        \"imageUrl\": \"https://bucket.ex10.tech/images/c29daf78-d323-11ee-97d4-0242ac12000b/originalContentUrl.png\",\r\n                        \"action\": {\r\n                            \"type\": \"message\",\r\n                            \"label\": \"กติกา\",\r\n                            \"text\": \"กติกา\"\r\n                        }\r\n                    },\r\n                    {\r\n                        \"type\": \"action\",\r\n                        \"imageUrl\": \"https://bucket.ex10.tech/images/bdbdcdd7-d381-11ee-97d4-0242ac12000b/originalContentUrl.png\",\r\n                        \"action\": {\r\n                            \"type\": \"message\",\r\n                            \"label\": \"เริ่มเกมส์\",\r\n                            \"text\": \"เริ่มเกมส์\"\r\n                        }\r\n                    },\r\n                    {\r\n                        \"type\": \"action\",\r\n                        \"imageUrl\": \"https://bucket.ex10.tech/images/871f88ff-d3b0-11ee-97d4-0242ac12000b/originalContentUrl.png\",\r\n                        \"action\": {\r\n                            \"type\": \"message\",\r\n                            \"label\": \"ล้างเกมส์ของคุณ\",\r\n                            \"text\": \"ล้างเกมส์ของคุณ\"\r\n                        }\r\n                    }\r\n                ]\r\n            }\r\n        }\r\n    ]\r\n}"
 										},
 										"url": {
 											"raw": "https://api.line.me/v2/bot/message/reply",
@@ -2028,6 +2028,45 @@
 												"push"
 											]
 										}
+									},
+									"response": []
+								},
+								{
+									"name": "Display a loading animation",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+												"key": "Authorization",
+												"value": "Bearer {{access_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"chatId\": \"{{userid}}\",\n    \"loadingSeconds\": 5\n}"
+										},
+										"url": {
+											"raw": "https://api.line.me/v2/bot/chat/loading/start",
+											"protocol": "https",
+											"host": [
+												"api",
+												"line",
+												"me"
+											],
+											"path": [
+												"v2",
+												"bot",
+												"chat",
+												"loading",
+												"start"
+											]
+										},
+										"description": "Display a loading animation in one-on-one chats between users and LINE Official Accounts."
 									},
 									"response": []
 								}
@@ -3887,7 +3926,8 @@
 													"var jsonData = pm.response.json();",
 													"pm.globals.set(\"richMenuId_A\", jsonData.richMenuId);"
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -3908,7 +3948,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"Staff\",\r\n    \"chatBarText\": \"Click\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1210,\r\n                \"y\": 259,\r\n                \"width\": 1193,\r\n                \"height\": 610\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://liff.line.me/2000633139-kDynMvpL\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1222,\r\n                \"y\": 1082,\r\n                \"width\": 1198,\r\n                \"height\": 468\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://liff.line.me/2000633139-DKoQ5l0N\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 75,\r\n                \"y\": 262,\r\n                \"width\": 938,\r\n                \"height\": 1351\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ข้อมูลโครงการ\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1998,\r\n                \"y\": 38,\r\n                \"width\": 468,\r\n                \"height\": 131\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-c\",\r\n                \"data\": \"richmenu=c\"\r\n            }\r\n        }\r\n    ]\r\n}"
+											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"Staff\",\r\n    \"chatBarText\": \"Click\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1210,\r\n                \"y\": 259,\r\n                \"width\": 1193,\r\n                \"height\": 610\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://liff.line.me/xxxxx\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1222,\r\n                \"y\": 1082,\r\n                \"width\": 1198,\r\n                \"height\": 468\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://liff.line.me/xxxx\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 75,\r\n                \"y\": 262,\r\n                \"width\": 938,\r\n                \"height\": 1351\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ข้อมูลโครงการ\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1998,\r\n                \"y\": 38,\r\n                \"width\": 468,\r\n                \"height\": 131\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-c\",\r\n                \"data\": \"richmenu=c\"\r\n            }\r\n        }\r\n    ]\r\n}"
 										},
 										"url": {
 											"raw": "https://api.line.me/v2/bot/richmenu",
@@ -3937,7 +3977,8 @@
 													"var jsonData = pm.response.json();",
 													"pm.globals.set(\"richMenuId_B\", jsonData.richMenuId);"
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -3958,7 +3999,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"Manager\",\r\n    \"chatBarText\": \"Click\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1210,\r\n                \"y\": 259,\r\n                \"width\": 1193,\r\n                \"height\": 610\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://liff.line.me/2000633139-kDynMvpL\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1850,\r\n                \"y\": 1437,\r\n                \"width\": 503,\r\n                \"height\": 187\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ข้อมูลรายงาน\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1160,\r\n                \"y\": 955,\r\n                \"width\": 564,\r\n                \"height\": 679\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://liff.line.me/2000633139-DKoQ5l0N\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1785,\r\n                \"y\": 955,\r\n                \"width\": 632,\r\n                \"height\": 672\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ข้อมูลรายงาน\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 75,\r\n                \"y\": 262,\r\n                \"width\": 938,\r\n                \"height\": 1351\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ข้อมูลโครงการ\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1959,\r\n                \"y\": 24,\r\n                \"width\": 496,\r\n                \"height\": 123\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-d\",\r\n                \"data\": \"richmenu=d\"\r\n            }\r\n        }\r\n    ]\r\n}"
+											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"Manager\",\r\n    \"chatBarText\": \"Click\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1210,\r\n                \"y\": 259,\r\n                \"width\": 1193,\r\n                \"height\": 610\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://liff.line.me/xxxx\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1850,\r\n                \"y\": 1437,\r\n                \"width\": 503,\r\n                \"height\": 187\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ข้อมูลรายงาน\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1160,\r\n                \"y\": 955,\r\n                \"width\": 564,\r\n                \"height\": 679\r\n            },\r\n            \"action\": {\r\n                \"type\": \"uri\",\r\n                \"uri\": \"https://liff.line.me/xxxx\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1785,\r\n                \"y\": 955,\r\n                \"width\": 632,\r\n                \"height\": 672\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ข้อมูลรายงาน\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 75,\r\n                \"y\": 262,\r\n                \"width\": 938,\r\n                \"height\": 1351\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ข้อมูลโครงการ\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1959,\r\n                \"y\": 24,\r\n                \"width\": 496,\r\n                \"height\": 123\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-d\",\r\n                \"data\": \"richmenu=d\"\r\n            }\r\n        }\r\n    ]\r\n}"
 										},
 										"url": {
 											"raw": "https://api.line.me/v2/bot/richmenu",
@@ -3987,7 +4028,8 @@
 													"var jsonData = pm.response.json();",
 													"pm.globals.set(\"richMenuId_C\", jsonData.richMenuId);"
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -4008,7 +4050,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"Page2-1\",\r\n    \"chatBarText\": \"Click\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 64,\r\n                \"y\": 147,\r\n                \"width\": 1581,\r\n                \"height\": 744\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ASW Sync Calendar\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1709,\r\n                \"y\": 192,\r\n                \"width\": 738,\r\n                \"height\": 697\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ข้อมูลองค์กร\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 81,\r\n                \"y\": 985,\r\n                \"width\": 752,\r\n                \"height\": 643\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"IT Service\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 927,\r\n                \"y\": 979,\r\n                \"width\": 618,\r\n                \"height\": 639\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"IP/IC\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1662,\r\n                \"y\": 953,\r\n                \"width\": 716,\r\n                \"height\": 669\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"Contact BU\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 2021,\r\n                \"y\": 19,\r\n                \"width\": 415,\r\n                \"height\": 128\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-a\",\r\n                \"data\": \"richmenu=a\"\r\n            }\r\n        }\r\n    ]\r\n}"
+											"raw": "{\r\n    \"size\": {\r\n        \"width\": 2500,\r\n        \"height\": 1686\r\n    },\r\n    \"selected\": true,\r\n    \"name\": \"Page2-1\",\r\n    \"chatBarText\": \"Click\",\r\n    \"areas\": [\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 64,\r\n                \"y\": 147,\r\n                \"width\": 1581,\r\n                \"height\": 744\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"xxxx\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1709,\r\n                \"y\": 192,\r\n                \"width\": 738,\r\n                \"height\": 697\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"ข้อมูลองค์กร\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 81,\r\n                \"y\": 985,\r\n                \"width\": 752,\r\n                \"height\": 643\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"IT Service\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 927,\r\n                \"y\": 979,\r\n                \"width\": 618,\r\n                \"height\": 639\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"IP/IC\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 1662,\r\n                \"y\": 953,\r\n                \"width\": 716,\r\n                \"height\": 669\r\n            },\r\n            \"action\": {\r\n                \"type\": \"message\",\r\n                \"text\": \"Contact BU\"\r\n            }\r\n        },\r\n        {\r\n            \"bounds\": {\r\n                \"x\": 2021,\r\n                \"y\": 19,\r\n                \"width\": 415,\r\n                \"height\": 128\r\n            },\r\n            \"action\": {\r\n                \"type\": \"richmenuswitch\",\r\n                \"richMenuAliasId\": \"richmenu-a\",\r\n                \"data\": \"richmenu=a\"\r\n            }\r\n        }\r\n    ]\r\n}"
 										},
 										"url": {
 											"raw": "https://api.line.me/v2/bot/richmenu",
@@ -4180,7 +4222,7 @@
 										"body": {
 											"mode": "file",
 											"file": {
-												"src": "/Users/thepnatee/Desktop/works/asset-wise/document/richmenu/Richmenu New/page2.png"
+												"src": ""
 											}
 										},
 										"url": {
@@ -4472,7 +4514,7 @@
 													}
 												],
 												"url": {
-													"raw": "https://api.line.me/v2/bot/richmenu/alias/richmenu-alias-a",
+													"raw": "https://api.line.me/v2/bot/richmenu/alias/richmenu-a",
 													"protocol": "https",
 													"host": [
 														"api",
@@ -4484,7 +4526,7 @@
 														"bot",
 														"richmenu",
 														"alias",
-														"richmenu-alias-a"
+														"richmenu-a"
 													]
 												}
 											},
@@ -6299,6 +6341,42 @@
 										"oauth2",
 										"v2.1",
 										"verify"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deauthorize your app to which the user has granted permissions",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userAccessToken\": \"{user access token}\"\n}"
+								},
+								"url": {
+									"raw": "https://api.line.me/user/v1/deauthorize",
+									"protocol": "https",
+									"host": [
+										"api",
+										"line",
+										"me"
+									],
+									"path": [
+										"user",
+										"v1",
+										"deauthorize"
 									]
 								}
 							},
