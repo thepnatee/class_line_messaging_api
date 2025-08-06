@@ -6142,6 +6142,48 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Send a coupon",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\n{\n  \"messages\": [\n    {\n      \"type\": \"coupon\",\n      \"couponId\": \"{{couponId}}\"\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.line.me/v2/bot/message/broadcast",
+									"protocol": "https",
+									"host": [
+										"api",
+										"line",
+										"me"
+									],
+									"path": [
+										"v2",
+										"bot",
+										"message",
+										"broadcast"
+									]
+								},
+								"description": "## Send a coupon\n\nAfter creating a coupon and receiving the coupon ID, specify that coupon ID in a [coupon message](https://developers.line.biz/en/docs/messaging-api/message-types/#coupon-messages) and send it. If you don't know the coupon ID, you can [get the coupon list](https://developers.line.biz/en/docs/messaging-api/send-coupons-to-users/#check-coupon-list) to check it.  \n  \nCoupon messages can be sent as any of the following types of messages. You can also send coupons created using the Messaging API as messages in LINE Official Account Manager.\n\n- [Push message](https://developers.line.biz/en/reference/messaging-api/#send-push-message)\n    \n- [Multicast message](https://developers.line.biz/en/reference/messaging-api/#send-multicast-message)\n    \n- [Broadcast message](https://developers.line.biz/en/reference/messaging-api/#send-broadcast-message)\n    \n- [Narrowcast message](https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message)\n    \n- [Reply message](https://developers.line.biz/en/reference/messaging-api/#send-reply-message)"
+							},
+							"response": []
 						}
 					],
 					"description": "You can now create coupons using the Messaging API and send them as messages\n\n### Added Features\n\n- [Create a coupon](https://developers.line.biz/en/reference/messaging-api/#create-coupon)\n    \n- [Discontinue a coupon](https://developers.line.biz/en/reference/messaging-api/#discontinue-coupon)\n    \n- [Get a list of coupons](https://developers.line.biz/en/reference/messaging-api/#get-coupons-list)\n    \n- [Get details of a coupon](https://developers.line.biz/en/reference/messaging-api/#get-coupon)\n    \n- Send messages with the message type set to [Coupon message](https://developers.line.biz/en/docs/messaging-api/message-types/#coupon-messages)\n    \n\nFor more information, see [Create coupons and send them to users](https://developers.line.biz/en/docs/messaging-api/send-coupons-to-users/) in the Messaging API documentation.\n\n### [#](https://developers.line.biz/en/news/2025/08/06/coupon-api/#coupon-api-sdk-20250806)LINE Messaging API SDK Updates\n\nFor more information about the update status of each SDK release in line with the addition of these new features, see the [LINE Messaging API SDK](https://developers.line.biz/en/docs/messaging-api/line-bot-sdk/) release notes."
